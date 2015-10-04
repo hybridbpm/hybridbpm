@@ -13,7 +13,7 @@ Run standalone HYBRIDBPM server based on [Undertow](http://www.undertow.io)
 ```
 ## How to use? ##
 [Documentation](https://github.com/hybridbpm/hybridbpm/wiki)
-## Need professional services? ## 
+## Need professional services? ##
 Support Service, Professional Consulting and Trainings are comming soon.
 ## Licenses ##
 The source code is released under Apache 2.0.
