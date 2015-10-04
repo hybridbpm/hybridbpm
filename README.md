@@ -11,7 +11,7 @@ Run standalone HYBRIDBPM server based on [Undertow](http://www.undertow.io)
 
  java -jar hybridbpm-server-1.0.jar
 ```
-## How to use? ## 
+## How to use? ##
 [Documentation](https://github.com/hybridbpm/hybridbpm/wiki)
 ## Need professional services? ## 
 Support Service, Professional Consulting and Trainings are comming soon.
