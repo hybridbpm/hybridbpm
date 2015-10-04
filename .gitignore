@@ -1,0 +1,36 @@
+*.class
+*/target/*
+target
+*/test-output
+out
+*/databases
+*/conf
+*/www
+
+/hybridbpm-core/databases/
+/hybridbpm-core/www/
+/hybridbpm-core/nbactions.xml
+/hybridbpm-core/orientdb-server-config.xml
+/hybridbpm-core/hybridbpm/
+/hybridbpm-core/src/main/resources/www/studio/views/database/function/
+/hybridbpm-core/src/main/resources/www/studio/views/database/context/
+/hybridbpm-core/src/main/resources/www/studio/
+/hybridbpm-core/src/main/resources/www/js/
+/hybridbpm-core/src/main/resources/www/
+/hybridbpm-server/hybridbpm/
+/hybridbpm-server/www/
+/hybridbpm-server/**.log
+
+
+# Log Files #
+*.log
+
+# Eclipse IDE files
+*.classpath
+*.project
+.settings/
+*.prefs
+
+#IntelliJ IDEA files
+*.iml
+.idea/
