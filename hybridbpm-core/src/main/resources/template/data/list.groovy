@@ -1,0 +1,1 @@
+    private List<$className> $fieldName;

@@ -1,0 +1,16 @@
+{
+  "inParameters" : [ {
+    "name" : "inParam",
+    "description" : "inParam",
+    "className" : "java.lang.String",
+    "collection" : "NONE",
+    "editor" : "TEXT_FIELD"
+  } ],
+  "outParameters" : [ {
+    "name" : "outParam",
+    "description" : "outParam",
+    "className" : "java.lang.String",
+    "collection" : "NONE",
+    "editor" : "TEXT_FIELD"
+  } ]
+}

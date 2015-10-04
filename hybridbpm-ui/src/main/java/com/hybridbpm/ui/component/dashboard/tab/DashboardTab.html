@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="package-mapping" content="dash:com.hybridbpm.ui.component.dashboard.tab" />
+    </head>  
+    <body> 
+    <v-vertical-layout id="panel" size-full="true" style-name="borderless no-border-radius"> 
+        <v-horizontal-layout _id="tools" spacing="" style-name="toolbar" :right=""> 
+                <v-button _id="btnEdit" style-name="borderless small">Edit tab</v-button>
+            </v-horizontal-layout>
+        <dash-dashboard-panel-container _id="panels" size-full="true" :expand="1" /> 
+    </v-vertical-layout>  
+</body>
+</html>

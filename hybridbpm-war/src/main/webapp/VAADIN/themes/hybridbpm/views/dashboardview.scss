@@ -1,0 +1,158 @@
+@mixin dashboard-dashboard-view {
+
+    .dashboard-view {
+        /*padding-top: $v-unit-size;*/
+        overflow: hidden;
+        position: relative;
+        
+        .dashboard-panel {
+            overflow: auto;
+        }
+
+        .dashboard-panels {
+            display: block;
+            overflow: auto;
+
+            .scrollable {
+                overflow: scroll !important;
+            }
+
+            .adaptive-task-editor-slot {
+                padding: round($view-padding / 3);
+                max-width: 600px;
+                margin: auto;
+                display: block;
+
+                .card {
+                    height: 100%;
+                    overflow: hidden;
+                    padding: 6px 6px 6px 6px;
+                    position: relative;
+                    border-radius: 2px;
+                    .button-bar {
+                        .v-button {
+                            padding: 0px;
+                        }
+                        .selector {
+                            height: initial; 
+                        }
+                        .v-spacing {
+                            width: 6px;
+                        }
+                    }    
+                    .templates {
+                    }
+                }
+
+                .textoverlay-wrapper {
+                    width: 100%;
+                }
+
+            }
+            &[width-range~="0-700px"] {
+                .adaptive-task-editor-slot {
+                    width: 100% !important;
+                }
+            }
+            &[width-range~="701px-"] {
+                .adaptive-task-editor-slot {
+                    width: 100%;
+                }
+            }
+            .adaptive-task-editor-slot.max {
+                width: 100% !important;
+                max-width: 100%;
+                height: 100%;
+                padding-top: 6px;
+            }
+
+            .adaptive-task-panel-slot {
+                padding-top: 0;
+                padding-left: round($view-padding / 3);
+                padding-right: round($view-padding / 3);
+                padding-bottom: round($view-padding / 3);
+                max-width: 600px;
+                margin: auto;
+                display: block;
+
+                .card {
+                    height: 100%;
+                    overflow: hidden;
+                    padding: 6px 6px 6px 6px;
+                    position: relative;
+                    border-radius: 2px;
+
+                    .button-bar {
+                        .v-button {
+                            padding: 0px;
+                            height: initial;
+                        }
+                    }  
+
+                }
+
+            }
+            &[width-range~="0-700px"] {
+                .adaptive-task-panel-slot {
+                    width: 100% !important;
+                }
+            }
+            &[width-range~="701px-"] {
+                .adaptive-task-panel-slot {
+                    width: 100%;
+                }
+            }
+            .adaptive-task-panel-slot.max {
+                width: 100% !important;
+                max-width: 100%;
+                height: 100%;
+                padding-top: 6px;
+            }
+        }
+    }
+
+    .dashboard-view {
+        @include width-range($max: 480px) {
+            /*            padding-left: round($view-padding / 2);
+                        padding-right: round($view-padding / 2);*/
+        }
+    }
+
+    .v-slot-comment {
+        padding-top: 0;
+        padding-left: round($view-padding / 3);
+        padding-right: round($view-padding / 3);
+        padding-bottom: round($view-padding / 3);
+        max-width: 600px;
+        margin: auto;
+        display: block;
+
+        .card {
+            height: 100%;
+            overflow: hidden;
+            padding: 56px 10px 0px 10px;
+            position: relative;
+            border-radius: 2px;
+
+            .v-slot-user-image {
+                border-radius: 50%;                 
+                overflow: hidden;
+                width: 48px;                 
+                height: 48px;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+                margin: auto;
+                padding: 0px;
+                border: 1px solid #c9c9c9;
+                background-color: valo-font-color($valo-menu-background-color);
+                .user-image {
+                    height: 46px;
+                }
+            }
+            .sender {
+                padding: 0px;
+                height: initial;
+            }
+        }
+
+    }
+}

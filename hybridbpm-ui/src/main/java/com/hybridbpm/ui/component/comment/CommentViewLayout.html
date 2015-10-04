@@ -1,0 +1,16 @@
+<v-vertical-layout  size-full=""  spacing="" style-name="card padding8 comment" margin=""> 
+    <v-horizontal-layout spacing=""  size-full="" >
+        <v-vertical-layout width="50px" height="100%"> 
+            <v-image _id="userImage" style-name="user-image"/> 
+        </v-vertical-layout>
+        <v-vertical-layout width="100%" height="100%" :expand=""> 
+            <v-label _id="senderName" style-name="no-margin small sender-name" :left="" :bottom="" /> 
+            <v-button _id="senderUsername" style-name="sender link no-margin small" :left="" :top=""/> 
+        </v-vertical-layout>
+        <v-label _id="createDate" style-name="no-margin small" :right="" :center="" /> 
+    </v-horizontal-layout>
+    <v-label _id="bodyField" size-full="" :expand="" />
+    <v-horizontal-layout _id="buttonBar" spacing="true" width-full="" style-name="toolbar">
+        <v-button _id="btnReply" style-name="link small" :expand="" :middle="" :right="" >Reply</v-button>
+    </v-horizontal-layout>
+</v-vertical-layout> 

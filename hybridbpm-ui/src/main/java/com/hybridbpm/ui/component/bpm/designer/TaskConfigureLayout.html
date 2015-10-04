@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta name="package-mapping" content="ace:org.vaadin.aceeditor" />
+        <meta name="package-mapping" content="h:com.hybridbpm.ui.component.development" />
+    </head>  
+    <body> 
+    <v-vertical-layout size-full margin="false" spacing="true"> 
+        <v-tab-sheet _id="tabSheet" size-full="true" :expand=""  > 
+            <tab caption="Configuration" selected="true"> 
+                <v-vertical-layout spacing="true" margin="true" size-full="true"> 
+                    <v-option-group _id="typeOptionGroup" caption="Type" style-name="horizontal"/> 
+                    <v-text-field _id="titleTextField" caption="Title" null-representation="" width-full="true"/>
+                    <v-text-field _id="descriptionTextField" caption="Description" null-representation="" width-full="true"/> 
+                    <v-horizontal-layout spacing="true" width-full="true">
+                        <v-text-field _id="xTextField" caption="X" null-representation="" width="50%"/>
+                        <v-text-field _id="yTextField" caption="Y" null-representation="" width="50%"/>
+                    </v-horizontal-layout>
+                    <v-horizontal-layout spacing="true" width-full="true">
+                        <v-option-group _id="joinOptionGroup" caption="Join type"  style-name="horizontal" />
+                        <v-option-group _id="splitOptionGroup" caption="Split type"  style-name="horizontal" /> 
+                    </v-horizontal-layout>
+                </v-vertical-layout>
+            </tab>
+            <tab caption="Form"> 
+                <v-vertical-layout _id="humanTaskLayout" spacing="true" margin="true" size-full="true"> 
+                    <v-combo-box _id="roleComboBox" caption="Role" width-full="true" />
+                    <v-combo-box _id="formComboBox" caption="Form" width-full="true" />
+                    <v-combo-box _id="mobileFormComboBox" caption="Mobile Form" width-full="true" visible="false" />
+                    <ace-ace-editor _id="actorScriptField" caption="Actor Expression" width-full="true" height="150px" :expand="" />
+                </v-vertical-layout>
+            </tab>
+            <tab caption="Connector"> 
+                <v-vertical-layout _id="automaticTaskLayout" spacing="true" margin="true" size-full="true"> 
+                    <v-combo-box _id="connectorComboBox" caption="Connector" width-full="true" /> 
+                    <v-tab-sheet size-full="true" style-name="framed compact" :expand=""  > 
+                        <tab caption="In parameters" selected="true"> 
+                            <h-input-in-parameters-layout _id="inputInParametersLayout" />
+                        </tab>
+                        <tab caption="Out parameters"> 
+                            <h-output-out-parameters-layout _id="outputOutParametersLayout" />
+                            </v-vertical-layout>
+                        </tab>
+                    </v-tab-sheet>
+                </v-vertical-layout>
+            </tab>
+        </v-tab-sheet> 
+    </v-vertical-layout>
+</body>
+</html>

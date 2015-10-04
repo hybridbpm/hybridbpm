@@ -1,0 +1,21 @@
+<html>
+    <body> 
+    <v-css-layout style-name="adaptive-task-editor-slot" >
+        <v-vertical-layout _id="card" style-name="card" width-full="" height-full="" >
+            <v-vertical-layout _id="topLayout">
+                <v-vertical-layout _id="adaptiveLayout">
+                    <v-text-area _id="taskTitle" input-prompt="Type what to do..." rows="3" width-full=""  />
+                    <v-horizontal-layout width-full="" spacing="" style-name="button-bar">
+                        <v-label width="" style-name="small" :left="" >or</v-label> 
+                        <v-button _id="btnProcess" style-name="small link selector" description="Select process model" :left="" >select process template</v-button> 
+                        <v-button _id="btnSend" style-name="small primary" description="Send task" :right="" :expand="" >Send</v-button> 
+                    </v-horizontal-layout>
+                </v-vertical-layout>
+                <v-vertical-layout _id="templateLayout" visible="false" style-name="templates" caption="Process templates:">
+
+                </v-vertical-layout>
+            </v-vertical-layout>
+        </v-vertical-layout>
+    </v-css-layout>
+</body>
+</html>

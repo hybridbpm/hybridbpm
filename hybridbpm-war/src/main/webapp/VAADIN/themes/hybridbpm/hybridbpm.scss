@@ -1,0 +1,298 @@
+//  Copyright (c) 2011-2015 Marat Gubaidullin. 
+//  
+//  This file is part of HYBRIDBPM.
+//  
+//  HybridBPM is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Affero General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//  
+//  HybridBPM is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//  
+//  You should have received a copy of the GNU Affero General Public License
+//  along with HybridBPM.  If not, see <http ://www.gnu.org/licenses/>.
+
+
+$v-background-color: #FFFFFF;
+$v-focus-color: #FF9800;
+/*$v-friendly-color: #2c9720;*/
+$v-app-loading-text: "Loading HYBRIDBPM..."; 
+
+// Global variable overrides. Must be declared before importing Valo.
+
+// Defines the plaintext font size, weight and family. Font size affects general component sizing.
+//$v-font-size: 16px;
+//$v-font-weight: 300;
+//$v-font-family: "Open Sans", sans-serif;
+
+// Defines the border used by all components.
+//$v-border: 1px solid (v-shade 0.7);
+$v-border-radius: 2px;
+
+// Affects the color of some component elements, e.g Button, Panel title, etc
+//$v-background-color: hsl(210, 0%, 98%);
+// Affects the color of content areas, e.g  Panel and Window content, TextField input etc
+//$v-app-background-color: $v-background-color;
+
+
+// Affects the visual appearance of all components
+//$v-gradient: v-linear 8%;
+$v-bevel-depth: 30%;
+//$v-shadow-opacity: 5%;
+
+// Defines colors for indicating status (focus, success, failure)
+//$v-focus-color: valo-focus-color(); // Calculates a suitable color automatically
+//$v-friendly-color: #2c9720;
+//$v-error-indicator-color: #ed473b;
+
+// For more information, see: https://vaadin.com/book/-/page/themes.valo.html
+// Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
+
+@import "../valo/valo.scss";
+@import "common";
+@import "bpm";
+@import "views/login";
+@import "views/dashboardview";
+
+// Main layout padding
+$view-padding: round($v-unit-size / 2) !default;
+
+// Slight adjustment to menu background-color
+$valo-menu-background-color: #424242;
+
+/* This contains all of your theme. */
+/* If somebody wants to extend the theme she will include this mixin. */
+@mixin hybridbpm {
+    /* Include all the styles from the reindeer theme */
+    @include valo;
+    @include dashboard-common;
+    @include dashboard-login-view;
+    @include dashboard-dashboard-view;
+    @include bpm;
+
+    .v-button-primary {
+        /*color: white;*/
+    }
+
+    .overflow-hidden {
+        overflow: hidden;
+    }
+
+    .v-table-cell-wrapper{
+        .v-button {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+
+    .no-border-radius {
+        border-radius: 0px;
+    }
+
+    .icon-rotate90 {
+        .v-icon {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg);
+        }
+    }
+
+    .task-form-header {
+        .v-slot-user-image {
+            border-radius: 50%;                 
+            overflow: hidden;
+            width: 48px;                 
+            height: 48px;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+            margin: auto;
+            padding: 0px;
+            border: 1px solid #c9c9c9;
+            background-color: valo-font-color($valo-menu-background-color);
+            .user-image {
+                height: 46px;
+            }
+        }
+        .sender-name {
+        }
+        .sender {
+            padding: 0px;
+            height: initial;
+        }
+        .case {
+            padding: 0px;
+            height: initial;
+        }
+        .task-title {
+            padding-left: 62px;
+        }
+    }    
+
+    .v-table-color-table {
+        .v-colorpicker {
+            height: 25px;
+            width: 25px !important;
+            padding: 0px;
+            border: none;
+            .v-colorpicker-button-color {
+                top: 0px;
+                right: 0px;
+                bottom: 0px;
+                left: 0px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    select.aceeditor-suggestpopup-list {
+        width: 450px!important;
+    }
+
+    .v-button:focus:after {
+        border-color: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .popupContent {
+        .gwt-Image {
+            width: 16px!important;
+            height: 16px!important;
+        }
+    }
+
+    .v-splitpanel-hsplitter-transparent div:before{
+        border: none !important;
+    }
+
+    .v-verticallayout-code{
+        padding-left: round($v-unit-size / 5);
+    }
+    .v-verticallayout-template{
+        padding-right: round($v-unit-size / 5);
+    }
+
+    .taskheader {
+        border-bottom: max(1px, first-number($v-border)) solid first-color(valo-border($color: $v-app-background-color, $strength: 0.5));
+    }
+
+    .v-caption-label-arrow-right {
+        .v-icon {
+            float: right;
+        }
+    }
+
+    .v-slot-user-image{
+        border-radius: 50%;                 
+        overflow: hidden;
+        width: 112px;                 
+        height: 112px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+        margin: auto;
+        padding: 0px;
+        border: 1px solid #c9c9c9;
+        .user-image {
+            display: block;
+            max-height: 100%;
+            margin: auto;
+        }
+    }
+
+    .document-tree-table {
+        .v-treetable-treespacer {
+            line-height: 2;
+        }
+    }
+    // important for search textfield
+    .v-csslayout-v-component-group .v-widget {
+        margin-left: 0px;
+    }
+
+    .v-button-breadcrumbs{
+        padding: 0px 5px 0px 0px;
+        .v-button-caption{
+            margin-left: 5px;
+        }
+    }
+
+    .padding16.v-margin-top {
+        padding-top: $v-font-size;
+    }
+
+    .padding16.v-margin-right {
+        padding-right: $v-font-size;
+    }
+
+    .padding16.v-margin-bottom {
+        padding-bottom: $v-font-size;
+    }
+
+    .padding16.v-margin-left {
+        padding-left: $v-font-size;
+    }
+
+    .padding8.v-margin-top {
+        padding-top: 8px;
+    }
+
+    .padding8.v-margin-right {
+        padding-right:8px;
+    }
+
+    .padding8.v-margin-bottom {
+        padding-bottom: 8px;
+    }
+
+    .padding8.v-margin-left {
+        padding-left: 8px;
+    }
+}
+
+
+@include v-font(IcoMoon, '../../../../hybridbpm/fonts/icomoon');
+
+.IcoMoon {
+}
+
+/* TextComplete */
+
+.dropdown-menu {
+    font-family: $v-font-family;
+    @include valo-selection-overlay-style;
+    @include valo-combobox-popup-style;
+    /*border: 1px solid #ddd;*/
+    /*background-color: white;*/
+}
+
+.dropdown-menu li {
+    @include valo-selection-item-style;
+    /*border-top: 1px solid #ddd;*/
+    /*padding: 2px 5px;*/
+}
+
+.dropdown-menu li:first-child {
+    /*border-top: none;*/
+}
+
+.dropdown-menu li:hover,
+.dropdown-menu .active {
+    @include valo-selection-item-selected-style;
+    /*background-color: $v-focus-color;*/
+}
+
+
+/* SHOULD not modify */
+
+.dropdown-menu {
+    list-style: none;
+}
+
+.dropdown-menu a:hover {
+    cursor: pointer;
+}
+

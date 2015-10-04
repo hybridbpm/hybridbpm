@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="package-mapping" content="h:com.hybridbpm.ui.component" />
+    </head>
+    <body> 
+    <v-vertical-layout spacing="true" size-full="true"> 
+        <v-tab-sheet _id="tabSheet" size-full="true"> 
+            <tab caption="General" selected="true"> 
+                <v-vertical-layout spacing="true" margin="true"   >
+                    <v-horizontal-layout  spacing="true" width-full="true" >
+                        <v-text-field _id="urlTextField" caption="View URL" null-representation="" width-full="true"  :expand="1"></v-text-field> 
+                        <v-combo-box _id="iconComboBox" caption="Icon"></v-combo-box> 
+                    </v-horizontal-layout>
+                    <h-translated-field _id="titleTextField" caption="Title" width-full="true" /> 
+                </v-vertical-layout> 
+            </tab> 
+            <tab caption="Permissions"> 
+                <v-table _id="accessTable" size-full="true" style-name="borderless" /> 
+            </tab> 
+        </v-tab-sheet> 
+    </v-vertical-layout> 
+</body>
+</html>

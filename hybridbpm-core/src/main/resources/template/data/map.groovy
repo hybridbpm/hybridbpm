@@ -1,0 +1,1 @@
+    private Map<$keyClassName, $className> $fieldName;

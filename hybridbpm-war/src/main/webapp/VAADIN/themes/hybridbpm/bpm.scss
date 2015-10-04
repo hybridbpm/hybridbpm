@@ -1,0 +1,119 @@
+//  Copyright (c) 2011-2015 Marat Gubaidullin. 
+//  
+//  This file is part of HYBRIDBPM.
+//  
+//  HybridBPM is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU Affero General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//  
+//  HybridBPM is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//  
+//  You should have received a copy of the GNU Affero General Public License
+//  along with HybridBPM.  If not, see <http ://www.gnu.org/licenses/>.
+
+
+@mixin bpm {
+    
+    .scrollable{
+        overflow: auto;
+    }
+    
+    .process-editor {
+        /*padding: 12px;*/
+        overflow: auto;
+    }
+
+    .process-model {
+        background-color: #E0E0E0;
+        border: 1px solid #E0E0E0   ;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+
+        .v-button-process-element, .v-button-process-element:active, .v-button-process-element:focus, .v-button-process-element:hover  {
+            font-size: 12px;
+            padding: 0px 0px 0px 0px;
+            border-width: 2px;
+            .v-icon {
+                margin: 0px;
+                position: absolute;
+                top: 0px;
+                left: 3px;
+            }
+            .v-button-caption {
+                display: inline-block;
+                white-space: normal;
+            }
+        }
+        .v-button-process-element-selected {
+
+        }
+
+        .vertical {
+            display: table;
+            padding-left: 0px;
+            font-size: 0.9em;
+            .edit-button {
+                display: table-row;
+                color: $v-focus-color; 
+                height: 16px;
+            }
+        }
+
+        .horizontal {
+            display: inline-block;
+            font-size: 0.9em;
+            .edit-button {
+                padding: 0px 10px 0px 0px;
+                color: $v-focus-color;
+                height: 16px;
+            }
+        }
+
+        .edit-button {
+            .v-button-wrap {
+                font-size: 1.3em;
+                line-height: 1em;
+            }
+        }
+
+        .edit-button:after {
+            display: none;
+        }
+
+        .v-absolutelayout-wrapper-height-button-bar {
+            bottom: 6px;
+            position: absolute;
+            left: 45%;
+            z-index: 100;
+            .height-button-bar {
+                height: 20px;
+                display: inline-block;
+                .v-button {
+                    padding-right: 8px;
+                }
+                .v-button:after {
+                    display: none;
+                }
+            }
+        }
+
+        .v-absolutelayout-wrapper-width-button-bar {
+            float: right;
+            position: relative;
+            top: 45%;
+            z-index: 100;
+            padding-right: 6px;
+            .width-button-bar {
+                width: 30px;
+            }
+            .v-button:after {
+                display: none;
+            }
+        }
+
+    }
+    
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head> 
+    <body> 
+    <v-panel id="panel" size-full="true"> 
+        <v-vertical-layout spacing="true" _id="panelLayout" size-full="true" margin=""> 
+            <v-tab-sheet _id="tabSheet" size-full="true"> 
+                <tab caption="Modules" selected="true"> 
+                    <v-vertical-layout _id="modulesLayout" size-full="true" spacing="true" >
+                        <v-horizontal-layout _id="tools" spacing="" style-name="toolbar" width-full=""> 
+                            <v-option-group _id="moduleType" style-name="horizontal small" :left="" :expand=""></v-option-group>
+                            <v-button _id="btnRefresh" style-name="small borderless" :right="">Refresh</v-button>
+                            <v-button _id="btnAdd" style-name="small borderless primary" :right="">Add</v-button>
+                            <v-button _id="btnImport" style-name="small borderless" description="Import from file system" :right="">Import</v-button>
+                            <v-button _id="btnExport" style-name="small borderless" description="Export to file system" :right="">Export</v-button>
+                            <v-button _id="btnRegenerate" style-name="small borderless" description="Regenerate" :right="">Regenerate</v-button>
+                        </v-horizontal-layout>
+                        <v-tree-table _id="modulesTable" size-full="true"></v-tree-table> 
+                    </v-vertical-layout> 
+                </tab> 
+            </v-tab-sheet> 
+        </v-vertical-layout> 
+    </v-panel>  
+</body>
+</html>

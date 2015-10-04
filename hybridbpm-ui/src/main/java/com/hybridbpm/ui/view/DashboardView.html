@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head> 
+    <body> 
+    <v-panel id="panel" size-full="true"> 
+        <v-vertical-layout spacing="true" _id="panelLayout" size-full="true" margin=""> 
+            <v-css-layout _id="root" size-full="true" style-name="dashboard-view"> 
+                <v-css-layout _id="floatToolbar" style-name="main-button-bar" >
+                    <v-button _id="btnAdd" style-name="borderless small" />
+                    <v-button _id="btnEdit" style-name="borderless small" />
+                    <v-button _id="btnDelete" style-name="borderless small" />
+                </v-css-layout>
+                <v-vertical-layout _id="tabSheetLayout" size-full="true" style-name="padding8"> 
+                    <v-tab-sheet _id="tabSheet" size-full="true"> 
+
+                    </v-tab-sheet>
+                </v-vertical-layout>
+            </v-css-layout> 
+
+        </v-vertical-layout>
+    </v-panel>      
+</body>
+</html>

@@ -1,0 +1,18 @@
+<v-vertical-layout style-name="task-form-header" width-full="" >
+    <v-horizontal-layout _id="toolbar" width-full="" spacing="" style-name="dashboard-panel-toolbar">
+        <v-vertical-layout width="50px" height="100%"> 
+            <v-image _id="userImage" style-name="user-image"/> 
+        </v-vertical-layout>
+        <v-vertical-layout width="100%" height="100%" :expand=""> 
+            <v-horizontal-layout  width="100%">
+                <v-label _id="senderName" style-name="no-margin small sender-name" :left="" :bottom="" :expand=""/> 
+                <v-button _id="btnCaseCode" style-name="case link no-margin small" description="Open case" :right="" :bottom="" />
+            </v-horizontal-layout>
+            <v-horizontal-layout  width="100%">
+                <v-button _id="senderUsername" style-name="sender link no-margin small" :left="" :top="" :expand=""/>
+                <v-label _id="processTitle" width="" style-name="no-margin small" :right="" :top="" /> 
+            </v-horizontal-layout>
+        </v-vertical-layout>
+    </v-horizontal-layout>
+    <v-label _id="taskTitle" style-name="small task-title" />
+</v-vertical-layout>

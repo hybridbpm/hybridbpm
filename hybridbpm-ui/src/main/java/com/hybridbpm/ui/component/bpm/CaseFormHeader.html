@@ -1,0 +1,18 @@
+<html>
+    <head>
+    </head> 
+    <body> 
+    <v-horizontal-layout width-full margin="false" style-name="taskheader"> 
+        <v-form-layout width-full margin="false" style-name="light"> 
+            <v-text-field _id="caseName" caption="Case:"  /> 
+            <v-text-field _id="caseInitiator" caption="Initiator:"  /> 
+            <v-text-field _id="status" caption="Status:"  /> 
+        </v-form-layout>
+        <v-form-layout width-full margin="false" style-name="light" > 
+            <v-date-field _id="startDate" caption="Start date:" resolution="SECOND" /> 
+            <v-date-field _id="updateDate" caption="Update date:"  resolution="SECOND"  /> 
+            <v-date-field _id="finishDate" caption="Finish date:"  resolution="SECOND" /> 
+        </v-form-layout>
+    </v-horizontal-layout>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="package-mapping" content="doc:com.hybridbpm.ui.component.document" />
+    </head>  
+    <body> 
+    <v-vertical-layout spacing="true" margin="true"  size-full=""> 
+        <v-tab-sheet _id="tabSheet" size-full="true" style-name="framed" :expand=""> 
+            <tab caption="Document" selected="true"> 
+                <doc-document-form-layout _id="documentFormLayout" />
+            </tab>
+            <tab caption="History"> 
+                <doc-document-history-layout _id="documentHistoryLayout" />
+            </tab>
+            <tab caption="Permissions"> 
+                <doc-document-access-layout _id="documentAccessLayout" />
+            </tab>
+        </v-tab-sheet>
+        <v-horizontal-layout _id="buttonBar" spacing="true" width-full="" style-name="toolbar">
+            <v-button _id="btnPermission" style-name="small" :middle="" :left="" >Add permission</v-button>
+            <v-button _id="btnSave" style-name="small" :expand="" :middle="" :right="" >Save</v-button>
+        </v-horizontal-layout>
+    </v-vertical-layout> 
+</body>
+</html>

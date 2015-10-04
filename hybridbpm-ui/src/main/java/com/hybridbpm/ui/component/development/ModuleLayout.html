@@ -1,0 +1,20 @@
+<html>
+    <body> 
+    <v-vertical-layout spacing="true" margin="true"> 
+        <v-horizontal-layout spacing="" style-name="">
+            <v-option-group _id="moduleTypeOptionGroup" style-name="horizontal" :middle="" :left="" :expand=""></v-option-group> 
+        </v-horizontal-layout>
+        <v-horizontal-layout _id="configurationLayout" spacing="" style-name="" width-full="true">
+            <v-option-group _id="subTypeOptionGroup" style-name="horizontal" :middle="" :left=""></v-option-group> 
+            <v-combo-box _id="templateComboBox" caption="Template" :expand="" width-full="true"></v-combo-box> 
+            <v-combo-box _id="processComboBox" caption="Process" :expand="" width-full="true"></v-combo-box> 
+            <v-check-box _id="configurable" caption="Configurable" :middle="" :right=""></v-check-box> 
+            <v-check-box _id="publishable" caption="Publishable" :middle="" :right="" ></v-check-box>
+        </v-horizontal-layout>
+        <v-horizontal-layout spacing="" style-name="" width-full="true">
+            <v-text-field _id="name" caption="Module name" null-representation="" width-full="true" :expand="2"></v-text-field> 
+            <v-combo-box _id="iconComboBox" caption="Icon" width-full="true" :expand="1"></v-combo-box>
+        </v-horizontal-layout>
+    </v-vertical-layout>
+</body>
+</html>

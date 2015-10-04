@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head> 
+    <body> 
+    <v-panel id="panel" size-full="true"> 
+        <v-vertical-layout spacing="true" _id="panelLayout" size-full="true" margin=""> 
+            <v-tab-sheet _id="tabSheet" size-full="true"> 
+                <tab caption="Documents" selected="true"> 
+                    <v-vertical-layout _id="documentsLayout" size-full="true" spacing="true" >
+                        <v-horizontal-layout _id="breadcrumbs" style-name="wrapping"> 
+                        </v-horizontal-layout>
+                        <v-horizontal-layout _id="tools" spacing="" style-name="toolbar" width-full=""> 
+                            <v-css-layout style-name="v-component-group" width-full="" :left="" :expand="" >
+                                <v-text-field _id="searchTextField" input-prompt="Search document" style-name="small inline-icon" width="300px"/>
+                                <v-button _id="btnSearch" style-name="small">Search</v-button>
+                            </v-css-layout>
+                            <v-button _id="btnRefresh" style-name="small borderless" :right="">Refresh</v-button>
+                            <v-button _id="btnAddFile" style-name="small borderless primary" :right="">Add file</v-button>
+                            <v-button _id="btnAddFolder" style-name="small borderless" :right="">Add folder</v-button>
+                        </v-horizontal-layout>
+                        <v-table _id="documentTable" size-full="true" /> 
+                    </v-vertical-layout> 
+                </tab> 
+            </v-tab-sheet> 
+        </v-vertical-layout> 
+    </v-panel>  
+</body>
+</html>

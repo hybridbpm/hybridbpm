@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="package-mapping" content="h:com.hybridbpm.ui.component" />
+    </head>  <body> 
+    <v-vertical-layout  width="100%" margin="" spacing=""> 
+        <v-form-layout width-full margin="false" style-name=""> 
+            <v-horizontal-layout _id="fileLayout" caption="File" style-name="file-field" >
+                <v-button _id="btnDownload" style-name="link" />
+                <v-upload _id="fileUpload" />
+            </v-horizontal-layout>
+            <v-text-field _id="nameTextField" caption="Name:" null-representation="" width-full="true" /> 
+            <v-text-field _id="creatorTextField" caption="Creator:" null-representation="" width-full="true" />
+            <v-text-field _id="sizeTextField" caption="Size:" null-representation="" width-full="true" />
+            <v-text-field _id="mimeTextField" caption="Mime type:" null-representation="" width-full="true" />
+            <v-popup-date-field _id="createTextField" caption="Created:"/>
+            <v-popup-date-field _id="updateTextField" caption="Updated:"/>
+        </v-form-layout>
+        <h-translated-field _id="descriptionField" caption="Description"  width-full="true" /> 
+    </v-vertical-layout>
+</v-vertical-layout> 
+</body>
+</html>

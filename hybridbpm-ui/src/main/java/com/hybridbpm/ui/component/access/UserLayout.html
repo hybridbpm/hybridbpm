@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <body> 
+    <v-horizontal-layout spacing="true" > 
+        <v-vertical-layout spacing="true" > 
+            <v-image _id="userImage" style-name="user-image" :center=""/> 
+            <v-upload _id="imageUpload" :center="" /> 
+        </v-vertical-layout>
+        <v-form-layout margin="false" style-name="light" width="600px" > 
+            <v-text-field _id="username" caption="Username:" width-full="" null-representation="" /> 
+            <v-password-field _id="password1" caption="Password:" width-full=""  /> 
+            <v-password-field _id="password2" caption="Verify password:" width-full=""  /> 
+            <v-label _id="errorLabel" width-full=""  style-name="failure"/> 
+            <v-text-field _id="firstName" caption="Firstname:" width-full="" null-representation="" /> 
+            <v-text-field _id="lastName" caption="Lastname:" width-full="" null-representation="" /> 
+            <v-text-field _id="email" caption="E-mail:" width-full="" null-representation="" /> 
+            <v-combo-box _id="manager" caption="Manager:" width-full="" /> 
+            <v-combo-box _id="userLocale" caption="Locale:" width-full="" /> 
+            <v-text-field _id="firstVisibleHourOfDay" caption="First Visible Hour Of Day:" width-full="" null-representation="0" /> 
+            <v-text-field _id="lastVisibleHourOfDay" caption="Last Visible Hour Of Day:" width-full="" null-representation="23" /> 
+        </v-form-layout>
+    </v-horizontal-layout> 
+</body>
+</html>

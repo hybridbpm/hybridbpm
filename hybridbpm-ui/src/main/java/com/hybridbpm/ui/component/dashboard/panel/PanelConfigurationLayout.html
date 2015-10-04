@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta name="package-mapping" content="h:com.hybridbpm.ui.component" />
+    </head>
+    <body> 
+    <v-vertical-layout spacing=""> 
+        <v-tab-sheet _id="tabSheet" size-full="true" :expand=""> 
+            <tab caption="Panel" selected="true"> 
+                <v-vertical-layout _id="root1" spacing="true" margin="true" width-full="true"> 
+                    <h-translated-field _id="titleTextField" caption="Title" width-full="true" /> 
+                    <v-horizontal-layout spacing="" style-name="" width-full="true"> 
+                        <v-option-group _id="moduleType" style-name="horizontal" :middle="" :left=""></v-option-group> 
+                        <v-combo-box _id="moduleName" caption="Module name" :expand="" width-full="true"></v-combo-box> 
+                    </v-horizontal-layout>
+                </v-vertical-layout>
+            </tab>
+            <tab caption="Parameters"> 
+                <v-vertical-layout _id="root2" spacing="true" margin="true" width-full="true">
+                    <h-parameters-field-group _id="ParametersFieldGroup" ></h-parameters-field-group>
+                </v-vertical-layout>
+            </tab>
+        </v-tab-sheet>
+    </v-vertical-layout>
+</body>
+</html>
