@@ -27,15 +27,15 @@ All [screenshots](https://github.com/hybridbpm/hybridbpm/wiki/Screenshots)
 ### Standalone ###
 Standalone all-in-one HYBRIDBPM server is based on [Undertow](http://www.undertow.io)
 
-1. Download all-in-one hybridbpm-server-1.0.jar
-2. Run `java -jar hybridbpm-server-1.0.jar`
+1. Download all-in-one hybridbpm-server-1.0.0.jar
+2. Run `java -jar hybridbpm-server-1.0.0.jar`
 3. Point your browser to http://hostname:8080 
 4. Default login: administrator, password:administrator
 
 ### Servlet ###
 1. Download hybridbpm-1.0.war
 2. Deploy hybridbpm-1.0.war into servlet container
-3. Point your browser to http://hostname:port/hybridbpm-1.0
+3. Point your browser to http://hostname:port/hybridbpm-1.0.0
 4. Default login: administrator, password:administrator
 
 ## Getting started ##

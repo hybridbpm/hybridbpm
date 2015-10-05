@@ -4,7 +4,8 @@
     <parent>
         <artifactId>hybridbpm</artifactId>
         <groupId>com.hybridbpm</groupId>
-        <version>1.0</version>
+        <version>1.0.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>hybridbpm-ui</artifactId>
     <packaging>jar</packaging>

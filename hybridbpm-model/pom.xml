@@ -3,8 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.hybridbpm</groupId>
-        <artifactId>hybridbpm-parent</artifactId>
-        <version>1.0</version>
+        <artifactId>hybridbpm</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../</relativePath>
     </parent>
     <artifactId>hybridbpm-model</artifactId>
     <packaging>jar</packaging>
