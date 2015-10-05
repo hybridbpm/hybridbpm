@@ -6,7 +6,7 @@
     <groupId>com.hybridbpm</groupId>
     <artifactId>hybridbpm-demo</artifactId>
     <name>hybridbpm-demo</name>
-    <version>1.0.0</version>
+    <version>1.0.0-alpha1</version>
 
     <dependencies>
         <dependency>
