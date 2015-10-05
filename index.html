@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>HYBRIDBPM by hybridbpm</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>HYBRIDBPM</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/hybridbpm/hybridbpm">View the Project on GitHub <small>hybridbpm/hybridbpm</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/hybridbpm/hybridbpm/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/hybridbpm/hybridbpm/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/hybridbpm/hybridbpm">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><strong>HYBRIDBPM</strong> is an easy-to-use Business Process Management System (BPMS) targeted at business people and developers. HYBRIDBPM has a distributed core based on <a href="http://www.hazelcast.org">Hazelcast</a> and <a href="http://www.orientdb.com">OrientDB</a>, modern user interface created with <a href="http://www.vaadin.com">Vaadin Framework</a>. It is written in Java and runs in any servlet container or as a standalone application. It's open-source and distributed under the Apache license. </p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<h3>
+<a id="full-cycle-of-process-management" class="anchor" href="#full-cycle-of-process-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Full cycle of process management</h3>
+
+<ol>
+<li>
+<a href="https://github.com/hybridbpm/hybridbpm/wiki/Screenshots#modelling">Modelling and development</a> (Process, Data, Forms, Connectors)</li>
+<li>
+<a href="https://www.liferay.com/community/forums/-/message_boards/message/5235047">Execution</a> (Process Engine, User Case/Task Lists)</li>
+<li>
+<a href="https://github.com/hybridbpm/hybridbpm/wiki/Screenshots#monitoring">Monitoring</a> (Dashboard and configurable charts)</li>
+</ol>
+
+<h3>
+<a id="easy-to-use-modern-user-interface" class="anchor" href="#easy-to-use-modern-user-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy-to-use modern user interface</h3>
+
+<p>All <a href="https://github.com/hybridbpm/hybridbpm/wiki/Screenshots">screenshots</a></p>
+
+<h3>
+<a id="lightweight" class="anchor" href="#lightweight" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lightweight</h3>
+
+<ol>
+<li>70Mb all-in-one jar</li>
+<li>Embedded database (OrientDB)</li>
+</ol>
+
+<h3>
+<a id="scalability-and-high-availability" class="anchor" href="#scalability-and-high-availability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scalability and high-availability</h3>
+
+<ol>
+<li>Distributed data-grid-based (Hazelcast) process engine </li>
+<li>Distributed multi-model (Document, Graph) database (OrientDB)</li>
+</ol>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ol>
+<li>Mandatory: <strong>Java 8</strong>
+</li>
+<li>Optional: Servlet container</li>
+</ol>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="standalone" class="anchor" href="#standalone" aria-hidden="true"><span class="octicon octicon-link"></span></a>Standalone</h3>
+
+<p>Standalone all-in-one HYBRIDBPM server is based on <a href="http://www.undertow.io">Undertow</a></p>
+
+<ol>
+<li>Download all-in-one <a href="https://github.com/hybridbpm/hybridbpm/releases/download/1.0.0-alpha1/hybridbpm-server-1.0.0-alpha1.jar">hybridbpm-server-1.0.0-alpha1.jar</a>
+</li>
+<li>Run <code>java -jar hybridbpm-server-1.0.0-alpha1.jar</code>
+</li>
+<li>Point your browser to http://hostname:8080 </li>
+<li>Default login: administrator, password:administrator</li>
+</ol>
+
+<h3>
+<a id="servlet" class="anchor" href="#servlet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Servlet</h3>
+
+<ol>
+<li>Download <a href="https://github.com/hybridbpm/hybridbpm/releases/download/1.0.0-alpha1/hybridbpm-1.0.0-alpha1.war">hybridbpm-1.0.0-alpha1.war</a>
+</li>
+<li>Deploy hybridbpm-1.0.0-alpha1.war into servlet container</li>
+<li>Point your browser to http://hostname:port/hybridbpm-1.0.0-alpha1</li>
+<li>Default login: administrator, password:administrator</li>
+</ol>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
+
+<h3>
+<a id="create-new-process" class="anchor" href="#create-new-process" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create new process</h3>
+
+<ol>
+<li>Create data model</li>
+<li>Create process model</li>
+<li>Create form</li>
+<li>Create connector</li>
+</ol>
+
+<h3>
+<a id="working-with-cases-and-tasks" class="anchor" href="#working-with-cases-and-tasks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with cases and tasks</h3>
+
+<ol>
+<li>Start new case</li>
+<li>Execute tasks</li>
+<li>Add comments</li>
+<li>Manage cases</li>
+</ol>
+
+<h3>
+<a id="administration" class="anchor" href="#administration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Administration</h3>
+
+<ol>
+<li>Manage users</li>
+<li>Manage roles</li>
+<li>Manage groups</li>
+</ol>
+
+<h2>
+<a id="professional-services" class="anchor" href="#professional-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Professional services</h2>
+
+<p>Support Service, Professional Consulting and Trainings are comming soon.</p>
+
+<h2>
+<a id="licenses" class="anchor" href="#licenses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licenses</h2>
+
+<p>The source code is released under Apache 2.0.</p>
+
+<p>The application uses the Vaadin Charts 3 add-on, which is released under the Commercial Vaadin Addon License: <a href="https://vaadin.com/license/cval-3">https://vaadin.com/license/cval-3</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/hybridbpm">hybridbpm</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
