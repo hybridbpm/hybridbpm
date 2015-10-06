@@ -1,158 +1,416 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>HYBRIDBPM by hybridbpm</title>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>HYBRIDBPM</h1>
-        <p></p>
+        <title>HYBRIDBPM</title>
 
-        <p class="view"><a href="https://github.com/hybridbpm/hybridbpm">View the Project on GitHub <small>hybridbpm/hybridbpm</small></a></p>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="css/hybridbpm.css" rel="stylesheet">
+
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body id="page-top" class="index">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#page-top">HYBRIDBPM</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#features">Features</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#documentation">Documentation</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#downloads">Downloads</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="#team">Team</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Lightweight easy-to-use scalable open-source</h2>
+                    </div>
+                </div>
+                <div class="row carousel-holder">
+                    <div class="center-block">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image img-responsive bordered-primary" src="img/process-model-300.png" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image img-responsive bordered-primary" src="img/tasklist-300.png" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image img-responsive bordered-primary" src="img/dashboard-300.png" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Business Process Management Platform</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Features</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Full cycle of process management</h3>
+                </div>
+            </div>
+            <div class="row">
+                <hr class="section-heading-spacer">
+                <div class="container content-section">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="clearfix"></div>
+                            <h4 class="section-heading">Modelling</h4>
+                            <ul>
+                                <li class=""><p>Easy-to-use intuitive web-based tool</p></li>
+                                <li class=""><p>Process modelling</p></li>
+                                <li class=""><p>Forms development using Vaadin Framework declarative UI</p></li>
+                                <li class=""><p>Groovy and Java connectors development</p></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <img class="img-responsive bordered" src="img/process-model.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <hr class="section-heading-spacer">
+                <div class="container content-section">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <img class="img-responsive bordered" src="img/tasklist.png" alt="">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="clearfix"></div>
+                            <h4 class="section-heading">Execution</h4>
+                            <ul>
+                                <li class=""><p>Scalable process engine based-on Hazelcast Data-grid</p></li>
+                                <li class=""><p>Distributed mutli-model database (OrientDB)</p></li>
+                                <li class=""><p>Case and Task management UI</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <hr class="section-heading-spacer">
+                <div class="container content-section">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="clearfix"></div>
+                            <h4 class="section-heading">Monitoring</h4>
+                            <ul>
+                                <li class=""><p>Business Activity Monitoring Dashboards</p></li>
+                                <li class=""><p>Multiple configurable charts</p></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <img class="img-responsive bordered" src="img/dashboard.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Powerfull modern user interface</h3>
+                </div>
+            </div>
+            <hr class="section-heading-spacer">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/task.png" class="img-responsive bordered" alt="">
+                    <div class="portfolio-caption">
+                        <p>Creating new cases and tasks</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/comments.png" class="img-responsive  bordered" alt="">
+                    <div class="portfolio-caption">
+                        <p>Commenting</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <img src="img/calendar.png" class="img-responsive bordered" alt="">
+                    <div class="portfolio-caption">
+                        <p>Managing personal/scheduling task</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3>Lightweight and scalable</h3>
+                </div>
+            </div>
+            <hr class="section-heading-spacer">
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <ul>
+                        <li class=""><p>Less than 70Mb all-in-one jar</p></li>
+                        <li class=""><p>Embedded database (OrientDB)</p></li>
+                        <li class=""><p>Required only Java SDK 8</p></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <ul>
+                        <li class=""><p>Process engine based-on distributed data-grid (Hazelcast)</p></li>
+                        <li class=""><p>Distributed multi-model (Document and Graph) database (OrientDB) for data storage</p></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation" id="documentation">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Documentation</h2>
+                    <hr class="star-light star-gray">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <div class="text-center">
+                        <h3>Administration</h3>
+                    </div>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/Installation">Installation guide (Standalone, Servlet)</a></p>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/User-management">Manage Users, Roles, Groups</a></p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="text-center">
+                        <h3>Development</h3>
+                    </div>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/Process-Modelling">Create process, data model, forms and connectors</a></p>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/Dashboards">Charts and dashboards configuration</a></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="block-center text-center">
+                    <div class="text-center">
+                        <h3>User guide</h3>
+                    </div>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/Getting-started">Getting started</a></p>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/Manage-cases">Start and manage cases</a></p>
+                    <p><a href="https://github.com/hybridbpm/hybridbpm/wiki/Manage-tasks">Executing, scheduling, commenting tasks</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-        <ul>
-          <li><a href="https://github.com/hybridbpm/hybridbpm/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/hybridbpm/hybridbpm/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/hybridbpm/hybridbpm">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p><strong>HYBRIDBPM</strong> is an easy-to-use Business Process Management System (BPMS) targeted at business people and developers. HYBRIDBPM has a distributed core based on <a href="http://www.hazelcast.org">Hazelcast</a> and <a href="http://www.orientdb.com">OrientDB</a>, modern user interface created with <a href="http://www.vaadin.com">Vaadin Framework</a>. It is written in Java and runs in any servlet container or as a standalone application. It's open-source and distributed under the Apache license. </p>
+    <!-- Downloads Section -->
+    <section class="downloads" id="downloads">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Downloads</h2>
+                    <hr class="star-gray star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <p>All-in-one standalone server is based on <a href="http://www.undertow.io">undertow</a>.</p>
+                    <p>Requires only Java 8 to start.</p>
+                    <div class="col-lg-4 col-lg-offset-1">
+                        <a href="https://github.com/hybridbpm/hybridbpm/releases/download/1.0.0-alpha1/hybridbpm-server-1.0.0-alpha1.jar" class="btn btn-lg btn-primary">
+                            <i class="fa fa-download"></i> Download All-in-one jar
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <p>Web application requires any servlet 3.1 container</p>
+                    <p>Requires Java 8 to start.</p>
+                    <div class="col-lg-4 col-lg-offset-1">
+                        <a href="https://github.com/hybridbpm/hybridbpm/releases/download/1.0.0-alpha1/hybridbpm-1.0.0-alpha1.war" class="btn btn-lg btn-primary">
+                            <i class="fa fa-download"></i> Download hybridbpm.war
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Team</h2>
+                    <hr class="star-gray star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="team-member text-center">
+                        <img src="img/team/albert.png" class="img-responsive img-circle team" alt="">
+                        <h4>Wanted</h4>
+                        <p class="text-muted">Developer</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member text-center">
+                        <img src="img/team/marat.png" class="img-responsive img-circle team" alt="">
+                        <h4>Marat Gubaidullin</h4>
+                        <p class="text-muted">Founder, Architect, Developer</p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="https://twitter.com/mgubaidullin" class="btn-social btn-primary"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="https://ca.linkedin.com/in/maratgubaidullin" class="btn-social btn-primary"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member text-center">
+                        <img src="img/team/tesla.png" class="img-responsive img-circle team" alt="">
+                        <h4>Wanted</h4>
+                        <p class="text-muted">Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h3>
-<a id="full-cycle-of-process-management" class="anchor" href="#full-cycle-of-process-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Full cycle of process management</h3>
 
-<ol>
-<li>
-<a href="https://github.com/hybridbpm/hybridbpm/wiki/Screenshots#modelling">Modelling and development</a> (Process, Data, Forms, Connectors)</li>
-<li>
-<a href="https://www.liferay.com/community/forums/-/message_boards/message/5235047">Execution</a> (Process Engine, User Case/Task Lists)</li>
-<li>
-<a href="https://github.com/hybridbpm/hybridbpm/wiki/Screenshots#monitoring">Monitoring</a> (Dashboard and configurable charts)</li>
-</ol>
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>ISSUES</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://github.com/hybridbpm/hybridbpm/issues" class="btn-social btn-outline"><i class="fa fa-fw fa-send"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>SOURCES</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://github.com/hybridbpm/hybridbpm" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>FOLLOW US</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://twitter.com/hybridbpm" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; HYBRIDBPM 2015
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<h3>
-<a id="easy-to-use-modern-user-interface" class="anchor" href="#easy-to-use-modern-user-interface" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy-to-use modern user interface</h3>
-
-<p>All <a href="https://github.com/hybridbpm/hybridbpm/wiki/Screenshots">screenshots</a></p>
-
-<h3>
-<a id="lightweight" class="anchor" href="#lightweight" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lightweight</h3>
-
-<ol>
-<li>70Mb all-in-one jar</li>
-<li>Embedded database (OrientDB)</li>
-</ol>
-
-<h3>
-<a id="scalability-and-high-availability" class="anchor" href="#scalability-and-high-availability" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scalability and high-availability</h3>
-
-<ol>
-<li>Distributed data-grid-based (Hazelcast) process engine </li>
-<li>Distributed multi-model (Document, Graph) database (OrientDB)</li>
-</ol>
-
-<h2>
-<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
-
-<ol>
-<li>Mandatory: <strong>Java 8</strong>
-</li>
-<li>Optional: Servlet container</li>
-</ol>
-
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
-
-<h3>
-<a id="standalone" class="anchor" href="#standalone" aria-hidden="true"><span class="octicon octicon-link"></span></a>Standalone</h3>
-
-<p>Standalone all-in-one HYBRIDBPM server is based on <a href="http://www.undertow.io">Undertow</a></p>
-
-<ol>
-<li>Download all-in-one <a href="https://github.com/hybridbpm/hybridbpm/releases/download/1.0.0-alpha1/hybridbpm-server-1.0.0-alpha1.jar">hybridbpm-server-1.0.0-alpha1.jar</a>
-</li>
-<li>Run <code>java -jar hybridbpm-server-1.0.0-alpha1.jar</code>
-</li>
-<li>Point your browser to http://hostname:8080 </li>
-<li>Default login: administrator, password:administrator</li>
-</ol>
-
-<h3>
-<a id="servlet" class="anchor" href="#servlet" aria-hidden="true"><span class="octicon octicon-link"></span></a>Servlet</h3>
-
-<ol>
-<li>Download <a href="https://github.com/hybridbpm/hybridbpm/releases/download/1.0.0-alpha1/hybridbpm-1.0.0-alpha1.war">hybridbpm-1.0.0-alpha1.war</a>
-</li>
-<li>Deploy hybridbpm-1.0.0-alpha1.war into servlet container</li>
-<li>Point your browser to http://hostname:port/hybridbpm-1.0.0-alpha1</li>
-<li>Default login: administrator, password:administrator</li>
-</ol>
-
-<h2>
-<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started</h2>
-
-<h3>
-<a id="create-new-process" class="anchor" href="#create-new-process" aria-hidden="true"><span class="octicon octicon-link"></span></a>Create new process</h3>
-
-<ol>
-<li>Create data model</li>
-<li>Create process model</li>
-<li>Create form</li>
-<li>Create connector</li>
-</ol>
-
-<h3>
-<a id="working-with-cases-and-tasks" class="anchor" href="#working-with-cases-and-tasks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with cases and tasks</h3>
-
-<ol>
-<li>Start new case</li>
-<li>Execute tasks</li>
-<li>Add comments</li>
-<li>Manage cases</li>
-</ol>
-
-<h3>
-<a id="administration" class="anchor" href="#administration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Administration</h3>
-
-<ol>
-<li>Manage users</li>
-<li>Manage roles</li>
-<li>Manage groups</li>
-</ol>
-
-<h2>
-<a id="professional-services" class="anchor" href="#professional-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Professional services</h2>
-
-<p>Support Service, Professional Consulting and Trainings are comming soon.</p>
-
-<h2>
-<a id="licenses" class="anchor" href="#licenses" aria-hidden="true"><span class="octicon octicon-link"></span></a>Licenses</h2>
-
-<p>The source code is released under Apache 2.0.</p>
-
-<p>The application uses the Vaadin Charts 3 add-on, which is released under the Commercial Vaadin Addon License: <a href="https://vaadin.com/license/cval-3">https://vaadin.com/license/cval-3</a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/hybridbpm">hybridbpm</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/hybridbpm.js"></script>
+
+</body>
+
 </html>
