@@ -3,7 +3,7 @@
   <parent>
     <artifactId>hybridbpm</artifactId>
     <groupId>com.hybridbpm</groupId>
-    <version>1.0.0-alpha2</version>
+    <version>1.0.0-alpha3</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hybridbpm-server</artifactId>
@@ -31,6 +31,19 @@
         </executions>
         <configuration>
           <finalName>${project.name}-${project.version}</finalName>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>com/google/**</exclude>
+                <exclude>**/*.java</exclude>
+                <exclude>VAADIN/themes/valo/fonts/source-sans-pro/**</exclude>
+                <exclude>VAADIN/themes/valo/fonts/roboto/**</exclude>
+                <exclude>VAADIN/themes/valo/fonts/lato/**</exclude>
+                <exclude>VAADIN/themes/valo/fonts/lora/**</exclude>
+              </excludes>
+            </filter>
+          </filters>
           <transformers>
             <transformer>
               <mainClass>com.hybridbpm.server.HybridbpmServer</mainClass>

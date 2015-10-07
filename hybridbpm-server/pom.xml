@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.hybridbpm</groupId>
         <artifactId>hybridbpm</artifactId>
-        <version>1.0.0-alpha2</version>
+        <version>1.0.0-alpha3</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>hybridbpm-server</artifactId>
@@ -44,7 +44,6 @@
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-themes</artifactId>
         </dependency>
-        
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast-all</artifactId>
@@ -85,10 +84,10 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.couchbase.lite</groupId>
             <artifactId>couchbase-lite-java</artifactId>
-        </dependency>
+        </dependency>-->
         
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
@@ -152,6 +151,19 @@
                 <version>2.3</version>
                 <configuration>
                     <finalName>${project.name}-${project.version}</finalName>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>com/google/**</exclude>
+                                <exclude>**/*.java</exclude>
+                                <exclude>VAADIN/themes/valo/fonts/source-sans-pro/**</exclude>
+                                <exclude>VAADIN/themes/valo/fonts/roboto/**</exclude>
+                                <exclude>VAADIN/themes/valo/fonts/lato/**</exclude>
+                                <exclude>VAADIN/themes/valo/fonts/lora/**</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
                     <transformers>
                         <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <mainClass>com.hybridbpm.server.HybridbpmServer</mainClass>
