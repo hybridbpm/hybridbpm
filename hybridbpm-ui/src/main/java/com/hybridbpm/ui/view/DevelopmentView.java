@@ -45,6 +45,7 @@ import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
@@ -56,12 +57,15 @@ import com.vaadin.ui.Window;
 import com.vaadin.ui.declarative.Design;
 import java.util.Date;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.vaadin.dialogs.ConfirmDialog;
 
 @DesignRoot
 @SuppressWarnings("serial")
 public final class DevelopmentView extends AbstractView implements View, Button.ClickListener, Window.CloseListener, Property.ValueChangeListener {
 
+    private static final Logger logger = Logger.getLogger(DevelopmentView.class.getSimpleName());
     public static final String VIEW_URL = DashboardConstant.VIEW_URL_DEVELOPMENT;
     public static final String TITLE = "Development";
     public static final String ICON = FontAwesome.COG.name();
@@ -257,12 +261,17 @@ public final class DevelopmentView extends AbstractView implements View, Button.
 
             @Override
             public void buttonClick(Button.ClickEvent event) {
+                try {
                 if (event.getButton().equals(configureWindow.btnClose)) {
 
                 } else if (event.getButton().equals(configureWindow.btnOk)) {
                     moduleLayout.save();
                 }
                 configureWindow.close();
+                } catch (RuntimeException re){
+                    logger.log(Level.SEVERE, re.getMessage(), re);
+                    Notification.show("Error", re.getMessage(), Notification.Type.ERROR_MESSAGE);
+                }
             }
         };
         configureWindow.setClickListener(clickListener);

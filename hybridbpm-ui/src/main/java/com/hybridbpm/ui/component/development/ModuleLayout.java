@@ -20,6 +20,7 @@ package com.hybridbpm.ui.component.development;
 
 import com.hybridbpm.ui.component.TranslatedField;
 import com.hybridbpm.core.data.development.Module;
+import com.hybridbpm.core.util.HybridbpmCoreUtil;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.IcoMoon;
 import com.vaadin.annotations.DesignRoot;
@@ -27,6 +28,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.event.FieldEvents;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.ui.CheckBox;
@@ -125,6 +127,11 @@ public class ModuleLayout extends VerticalLayout {
         binder.bind(processComboBox, "processName");
         binder.setBuffered(true);
         name.setEnabled(newModule); // do not edit name
+        if (newModule){
+            name.addTextChangeListener((FieldEvents.TextChangeEvent event) -> {
+                name.setValue(HybridbpmCoreUtil.checkClassName(event.getText()));
+            });
+        }
         moduleTypeOptionGroup.setEnabled(newModule); // do not edit type
     }
 
@@ -133,7 +140,7 @@ public class ModuleLayout extends VerticalLayout {
             binder.commit();
             HybridbpmUI.getDevelopmentAPI().saveModule(module);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

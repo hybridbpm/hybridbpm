@@ -162,22 +162,31 @@ public class DevelopmentAPI extends AbstractAPI {
         }
     }
 
-    public Module saveModule(Module module) {
-        switch (module.getType()) {
-            case FORM:
-                return saveFormModule(module);
-            case MOBILE:
-                return saveMobileFormModule(module);
-            case CHART:
-                return saveChartModule(module);
-            case CONNECTOR:
-                return saveConnectorModule(module);
-            case DATA:
-                return saveDataModule(module);
-            case PROCESS:
-                return saveProcessModule(module);
-            default:
-                return module;
+    public Module saveModule(Module module) throws RuntimeException {
+        try {
+            String moduleName = HybridbpmCoreUtil.checkClassName(module.getName());
+            if (getModuleByName(moduleName) != null){
+                throw new RuntimeException("Module name should be unique!");
+            }
+            module.setName(moduleName);
+            switch (module.getType()) {
+                case FORM:
+                    return saveFormModule(module);
+                case MOBILE:
+                    return saveMobileFormModule(module);
+                case CHART:
+                    return saveChartModule(module);
+                case CONNECTOR:
+                    return saveConnectorModule(module);
+                case DATA:
+                    return saveDataModule(module);
+                case PROCESS:
+                    return saveProcessModule(module);
+                default:
+                    return module;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 

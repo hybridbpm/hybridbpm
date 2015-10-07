@@ -403,7 +403,22 @@ public class HybridbpmCoreUtil {
         while (!Character.isJavaIdentifierStart(result.charAt(0))) {
             result.deleteCharAt(0);
         }
-
+        return Character.toUpperCase(result.charAt(0)) + result.substring(1);
+    }
+    
+    public static String checkClassName(String name) {
+        name = name.replaceAll("\\s+", "").replaceAll("\\W", "");
+        StringBuilder result = new StringBuilder();
+        for (Character c : name.toCharArray()) {
+            if (Character.isJavaIdentifierPart(c)) {
+                result.append(c);
+            } else {
+                result.append("_");
+            }
+        }
+        while (!Character.isJavaIdentifierStart(result.charAt(0))) {
+            result.deleteCharAt(0);
+        }
         return Character.toUpperCase(result.charAt(0)) + result.substring(1);
     }
 
