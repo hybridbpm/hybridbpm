@@ -4,7 +4,7 @@
     <parent>
         <artifactId>hybridbpm</artifactId>
         <groupId>com.hybridbpm</groupId>
-        <version>1.0.0-alpha1</version>
+        <version>1.0.0-alpha2</version>
         <relativePath>../</relativePath>
     </parent>
     <artifactId>hybridbpm-ui</artifactId>
