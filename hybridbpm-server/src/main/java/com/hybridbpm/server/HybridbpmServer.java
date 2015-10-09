@@ -27,9 +27,10 @@ import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
 import static io.undertow.servlet.Servlets.defaultContainer;
 import static io.undertow.servlet.Servlets.deployment;
-import static io.undertow.servlet.Servlets.servlet;
 import io.undertow.servlet.api.DeploymentInfo;
 import io.undertow.servlet.api.DeploymentManager;
+import io.undertow.servlet.api.ServletInfo;
+import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,19 +67,21 @@ public class HybridbpmServer {
         }));
         try {
             hybridbpmServer.start();
+
+            ServletInfo servletInfo = new ServletInfo("VaadinServlet", VaadinServlet.class)
+                    .setAsyncSupported(true)
+                    .setLoadOnStartup(1)
+                    .addInitParam("ui", "com.hybridbpm.ui.HybridbpmUI").addInitParam("widgetset", "com.hybridbpm.ui.HybridbpmWidgetSet")
+                    .addMapping("/*").addMapping("/VAADIN");
+
             DeploymentInfo servletBuilder = deployment()
                     .setClassLoader(HybridbpmServer.class.getClassLoader())
                     .setContextPath(PATH)
                     .setDeploymentName("hybridbpm.war")
                     .setDisplayName("HYBRIDBPM")
                     .setResourceManager(new ClassPathResourceManager(HybridbpmServer.class.getClassLoader()))
-                    .addServlets(
-                            servlet("VaadinServlet", VaadinServlet.class)
-                            .setAsyncSupported(true)
-                            .setLoadOnStartup(1)
-                            .addInitParam("ui", "com.hybridbpm.ui.HybridbpmUI").addInitParam("widgetset", "com.hybridbpm.ui.HybridbpmWidgetSet")
-                            .addMapping("/*").addMapping("/VAADIN")
-                    );
+                    .addServlets(servletInfo)
+                    .addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, new WebSocketDeploymentInfo());
 
             DeploymentManager manager = defaultContainer().addDeployment(servletBuilder);
             manager.deploy();
@@ -90,12 +93,11 @@ public class HybridbpmServer {
             undertow = builder.build();
             undertow.start();
             logger.info("HybridbpmServer UI started");
-            
 
             Undertow.Builder builderJaxrs = Undertow.builder().addHttpListener(8081, "0.0.0.0");
             undertowJaxrsServer = new UndertowJaxrsServer().start(builderJaxrs);
             undertowJaxrsServer.deploy(HybridbpmRestApplication.class);
-            
+
             logger.info("HybridbpmServer REST started");
 
             logger.info("HybridbpmServer started");
