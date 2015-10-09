@@ -1,43 +1,63 @@
+/*
+ * Copyright (c) 2011-2015 Marat Gubaidullin. 
+ *
+ * This file is part of HYBRIDBPM.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ *
+ */
 package com.hybridbpm.server;
 
 import com.hybridbpm.core.HybridbpmCore;
-import com.hybridbpm.core.HybridbpmServletContextListener;
+import com.hybridbpm.rest.HybridbpmRestApplication;
 import com.vaadin.server.VaadinServlet;
 import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
-import io.undertow.server.handlers.resource.FileResourceManager;
 import static io.undertow.servlet.Servlets.defaultContainer;
 import static io.undertow.servlet.Servlets.deployment;
 import static io.undertow.servlet.Servlets.servlet;
 import io.undertow.servlet.api.DeploymentInfo;
 import io.undertow.servlet.api.DeploymentManager;
-import io.undertow.servlet.api.ListenerInfo;
-import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
 
 /**
  *
- * @author mgubaidullin
+ * @author Marat Gubaidullin
  */
 public class HybridbpmServer {
 
     private static final Logger logger = Logger.getLogger(HybridbpmServer.class.getSimpleName());
     private static Undertow undertow;
+    private static UndertowJaxrsServer undertowJaxrsServer;
     private static final String PATH = "/hybridbpm";
     private static final HybridbpmCore hybridbpmServer = new HybridbpmCore();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         logger.info("HybridbpmServer starting");
-        
+
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
-            public void run() { 
+            public void run() {
                 try {
                     logger.info("HybridbpmServer stopping");
                     hybridbpmServer.stop();
+                    undertowJaxrsServer.stop();
+                    undertow.stop();
                     logger.info("HybridbpmServer stopped");
                 } catch (Exception ex) {
                     logger.log(Level.SEVERE, ex.getMessage(), ex);
@@ -69,6 +89,15 @@ public class HybridbpmServer {
 
             undertow = builder.build();
             undertow.start();
+            logger.info("HybridbpmServer UI started");
+            
+
+            Undertow.Builder builderJaxrs = Undertow.builder().addHttpListener(8081, "0.0.0.0");
+            undertowJaxrsServer = new UndertowJaxrsServer().start(builderJaxrs);
+            undertowJaxrsServer.deploy(HybridbpmRestApplication.class);
+            
+            logger.info("HybridbpmServer REST started");
+
             logger.info("HybridbpmServer started");
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);

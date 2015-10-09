@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Copyright (c) 2011-2015 Marat Gubaidullin. 
-
-This file is part of HybridBPM.
-
-Licensed under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License. You may obtain a copy of
-the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-License for the specific language governing permissions and limitations under
-the License.
-
-
--->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -38,6 +18,7 @@ the License.
         <aceeditor.version>0.8.13</aceeditor.version>
         <orientdb.version>2.1.1</orientdb.version>
         <groovy.version>2.4.3</groovy.version>
+        <resteasy.version>3.0.13.Final</resteasy.version>
         <project.source.version>1.7</project.source.version>
         <project.target.version>1.7</project.target.version>
         <project.encoding>UTF-8</project.encoding>
@@ -50,6 +31,7 @@ the License.
         <module>hybridbpm-ui</module>
         <module>hybridbpm-server</module>
         <module>hybridbpm-war</module>
+        <module>hybridbpm-rest</module>
     </modules>
 
     <build>
@@ -211,6 +193,42 @@ the License.
                 <groupId>com.orientechnologies</groupId>
                 <artifactId>orientdb-distributed</artifactId>
                 <version>${orientdb.version}</version>
+            </dependency>
+            <!-- core library -->
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxrs</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+
+            <!-- optional modules -->
+
+            <!-- JAXB support -->
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jaxb-provider</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <!-- multipart/form-data and multipart/mixed support -->
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-multipart-provider</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>async-http-servlet-3.0</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-undertow</artifactId>
+                <version>${resteasy.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
