@@ -86,9 +86,18 @@ public class HybridbpmCoreUtil {
         return null;
     }
 
-    public static String generateToken() throws NoSuchAlgorithmException {
-        SecureRandom random = new SecureRandom();
-        return UUID.randomUUID().toString() + new BigInteger(32, random).toString(32);
+    public static String generateToken(String username) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        try {
+            SecureRandom random = new SecureRandom();
+            String token_data = UUID.randomUUID().toString() + username + System.nanoTime() + new BigInteger(32, random).toString(32);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(token_data.getBytes("UTF-8"));
+            byte[] bytes = md.digest();
+            return (new HexBinaryAdapter()).marshal(bytes);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            logger.severe(ex.getMessage());
+        }
+        return null;
     }
 
     public static boolean isInteger(String str) {
@@ -163,7 +172,7 @@ public class HybridbpmCoreUtil {
             inputStream.close();
         }
     }
-    
+
     public static byte[] streamToBytes(InputStream inputStream) throws IOException {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -225,7 +234,7 @@ public class HybridbpmCoreUtil {
         String source = streamToString(streamSource);
         return source;
     }
-    
+
     public static byte[] createBytesFromSource(String path) throws Exception {
         InputStream streamSource = HybridbpmCoreUtil.class.getResourceAsStream(path);
         return streamToBytes(streamSource);
@@ -405,7 +414,7 @@ public class HybridbpmCoreUtil {
         }
         return Character.toUpperCase(result.charAt(0)) + result.substring(1);
     }
-    
+
     public static String checkClassName(String name) {
         name = name.replaceAll("\\s+", "").replaceAll("\\W", "");
         StringBuilder result = new StringBuilder();

@@ -24,6 +24,8 @@ import com.hybridbpm.core.data.access.RoleGroup;
 import com.hybridbpm.core.data.access.Role;
 import com.hybridbpm.core.data.access.UserGroup;
 import com.hybridbpm.core.data.access.User;
+import com.hybridbpm.core.data.dashboard.PanelDefinition;
+import com.hybridbpm.core.data.dashboard.TabDefinition;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ODocument;
@@ -213,6 +215,14 @@ public class AccessAPI extends AbstractAPI {
             user = database.save(user);
             database.commit();
             return detach(user);
+        }
+    }
+    
+    public void setUserToken(User user, String token) throws RuntimeException {
+        try (ODatabaseDocumentTx database = getODatabaseDocumentTx()) {
+            database.command(
+                    new OCommandSQL(
+                            "UPDATE User SET token = ? WHERE @rid = ?")).execute(user.getId());
         }
     }
 

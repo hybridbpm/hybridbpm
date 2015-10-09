@@ -51,18 +51,15 @@ public class HybridbpmServer {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         logger.info("HybridbpmServer starting");
 
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    logger.info("HybridbpmServer stopping");
-                    hybridbpmServer.stop();
-                    undertowJaxrsServer.stop();
-                    undertow.stop();
-                    logger.info("HybridbpmServer stopped");
-                } catch (Exception ex) {
-                    logger.log(Level.SEVERE, ex.getMessage(), ex);
-                }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                logger.info("HybridbpmServer stopping");
+                hybridbpmServer.stop();
+                undertowJaxrsServer.stop();
+                undertow.stop();
+                logger.info("HybridbpmServer stopped");
+            } catch (Exception ex) {
+                logger.log(Level.SEVERE, ex.getMessage(), ex);
             }
         }));
         try {

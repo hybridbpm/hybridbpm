@@ -36,4 +36,6 @@ public class HybridbpmRestApplication extends Application {
         classes.add(AuthenticationResource.class);
         return classes;
     }
+    
+    
 }

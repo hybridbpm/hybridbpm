@@ -18,9 +18,16 @@
  */
 package com.hybridbpm.rest;
 
+import com.hybridbpm.core.api.AccessAPI;
+import com.hybridbpm.core.data.access.User;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.jboss.resteasy.util.Base64;
 
 /**
  *
@@ -30,13 +37,24 @@ import javax.ws.rs.Produces;
 public class AuthenticationResource {
 
     @GET
-    @Produces("text/plain")
-    public String get() {
+    @Path("/token")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getToken(@Context HttpHeaders headers) {
         try {
-
-            return "done";
+            if (headers != null) {
+                String header = headers.getHeaderString(HttpHeaders.AUTHORIZATION);
+                String[] tokens = header.split("\\s+", 2);
+                String decoded = new String(Base64.decode(tokens[1]));
+                String[] credentials = decoded.split(":", 2);
+                String username = credentials[0];
+                String password = credentials[1];
+                User user = AccessAPI.get(null, null).login(username, password);
+                
+                return Response.ok(user.getToken()).build();
+            }
+            return Response.status(Response.Status.UNAUTHORIZED).build();
         } catch (Exception ex) {
-            return ex.getLocalizedMessage();
+            return Response.status(Response.Status.UNAUTHORIZED).build();
         }
     }
 }

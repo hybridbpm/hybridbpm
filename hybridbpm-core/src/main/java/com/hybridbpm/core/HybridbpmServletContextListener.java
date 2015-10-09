@@ -26,7 +26,7 @@ import javax.servlet.annotation.WebListener;
  *
  * @author Marat Gubaidullin
  */
-@WebListener
+//@WebListener
 public class HybridbpmServletContextListener extends HybridbpmCore implements ServletContextListener {
 
     @Override

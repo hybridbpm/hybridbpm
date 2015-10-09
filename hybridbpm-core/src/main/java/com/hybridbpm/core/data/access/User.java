@@ -20,6 +20,7 @@ package com.hybridbpm.core.data.access;
 
 import com.orientechnologies.orient.core.record.impl.ORecordBytes;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -39,12 +40,15 @@ public class User implements Serializable {
     public static final String ADMINISTRATOR = "administrator";
     public static final String ADMINISTRATOR_FIRSTNAME = "Administrator";
     public static final String ADMINISTRATOR_LASTNAME = "HybridBPM";
+    public static final String TOKEN_EXPIRE_PERIOD = "TOKEN_EXPIRE_PERIOD"; // days
 
     private String firstName;
     private String lastName;
     private String email;
     private String username;
     private String password;
+    private String token;
+    private Date tokenExpireDate;
     private User manager;
     private String locale;
     private Integer firstVisibleHourOfDay;
@@ -58,8 +62,6 @@ public class User implements Serializable {
 
         ENABLED, DISABLED
     };
-    
-    transient private Boolean sync;
     
     public User() {
     }
@@ -168,14 +170,22 @@ public class User implements Serializable {
         this.lastVisibleHourOfDay = lastVisibleHourOfDay;
     }
 
-    public Boolean getSync() {
-        return sync;
+    public String getToken() {
+        return token;
     }
 
-    public void setSync(Boolean sync) {
-        this.sync = sync;
+    public void setToken(String token) {
+        this.token = token;
     }
-    
+
+    public Date getTokenExpireDate() {
+        return tokenExpireDate;
+    }
+
+    public void setTokenExpireDate(Date tokenExpireDate) {
+        this.tokenExpireDate = tokenExpireDate;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

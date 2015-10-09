@@ -49,7 +49,6 @@ import com.hybridbpm.core.serializer.TaskModelGateTypeSerializer;
 import com.hybridbpm.core.serializer.TaskModelTaskPrioritySerializer;
 import com.hybridbpm.core.serializer.TranslatedSerializer;
 import com.hybridbpm.core.serializer.UserStatusSerializer;
-import com.hybridbpm.core.util.SyncConstant;
 import com.orientechnologies.orient.client.db.ODatabaseHelper;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.metadata.schema.OClass;
@@ -200,12 +199,7 @@ public class DatabaseServer {
 
     private void createDefaultConfig() {
         logger.log(Level.INFO, "DatabaseServer.createDefaultConfig started");
-        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(SyncConstant.COUCHBASE_SYNC_ADMIN_INTERFACE, "http://localhost:4985", Parameter.PARAM_TYPE.SYSTEM));
-        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(SyncConstant.COUCHBASE_SYNC_INTERFACE, "http://localhost:4984", Parameter.PARAM_TYPE.SYSTEM));
-        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(SyncConstant.COUCHBASE_SYNC_DATABASE, "hybridbpm", Parameter.PARAM_TYPE.SYSTEM));
-        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(SyncConstant.COUCHBASE_SYNC_USERNAME, "hybridbpm", Parameter.PARAM_TYPE.SYSTEM));
-        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(SyncConstant.COUCHBASE_SYNC_PASSWORD, "hybridbpm", Parameter.PARAM_TYPE.SYSTEM));
-        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(SyncConstant.COUCHBASE_SYNC_AUTOSTART, "false", Parameter.PARAM_TYPE.SYSTEM));
+        SystemAPI.get(User.getSystemUser(), null).saveParameter(new Parameter(User.TOKEN_EXPIRE_PERIOD, "90", Parameter.PARAM_TYPE.SYSTEM));
         logger.log(Level.INFO, "DatabaseServer.createDefaultConfig done");
     }
 
@@ -381,6 +375,8 @@ public class DatabaseServer {
         user.createProperty("email", OType.STRING);
         user.createProperty("username", OType.STRING);
         user.createProperty("password", OType.STRING);
+        user.createProperty("token", OType.STRING);
+        user.createProperty("tokenExpireDate", OType.DATETIME);
         user.createProperty("manager", OType.LINK, user);
         user.createProperty("locale", OType.STRING);
         user.createProperty("status", OType.STRING);
