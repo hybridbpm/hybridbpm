@@ -26,7 +26,6 @@ import com.hybridbpm.core.api.DashboardAPI;
 import com.hybridbpm.core.api.DevelopmentAPI;
 import com.hybridbpm.core.api.CommentAPI;
 import com.hybridbpm.core.api.DocumentAPI;
-import com.hybridbpm.core.api.SyncAPI;
 import com.hybridbpm.core.api.SystemAPI;
 import com.hybridbpm.core.data.access.User;
 import com.hybridbpm.core.data.dashboard.ViewDefinition;
@@ -170,10 +169,6 @@ public class HybridbpmUI extends UI {
 
     public static BpmAPI getBpmAPI() {
         return BpmAPI.get(getCurrent().user, VaadinSession.getCurrent().getSession().getId());
-    }
-
-    public static SyncAPI getSyncAPI() {
-        return SyncAPI.get(getCurrent().user, VaadinSession.getCurrent().getSession().getId());
     }
 
     public static CrudAPI getCrudAPI() {

@@ -23,7 +23,6 @@ import com.hybridbpm.ui.component.AbstractTreeTableLayout;
 import com.hybridbpm.ui.component.bpm.CaseListLayout;
 import com.hybridbpm.ui.component.configuration.SystemParametersLayout;
 import com.hybridbpm.ui.component.dashboard.ViewsLayout;
-import com.hybridbpm.ui.component.sync.MobileTaskListLayout;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -48,7 +47,6 @@ public final class AdministrationView extends AbstractView implements View, TabS
     
     private final ViewsLayout viewsLayout = new ViewsLayout();
     private final SystemParametersLayout systemParametersLayout = new SystemParametersLayout();
-    
     private final CaseListLayout allProgressLayout = new CaseListLayout(CaseListLayout.CASE_LIST.ADMINISTRATION);
 
 

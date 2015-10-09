@@ -33,14 +33,12 @@ public class HybridbpmCore {
     public static final String CONFIGURATION_DIRECTORY = "hybridbpm/conf";
     protected static final HazelcastServer hazelcastServer = new HazelcastServer();
     protected static final DatabaseServer databaseServer = new DatabaseServer();
-    protected static final CouchbaseLiteServer couchbaseLiteServer = new CouchbaseLiteServer();
 
     public void start() {
         try {
             logger.info("HybridbpmCore starting");
             new File(CONFIGURATION_DIRECTORY).mkdirs();
             databaseServer.start();
-            couchbaseLiteServer.start();
             hazelcastServer.start();
             logger.info("HybridbpmCore started");
         } catch (Exception ex) {
@@ -53,7 +51,6 @@ public class HybridbpmCore {
             logger.info("HybridbpmCore stopping");
             hazelcastServer.stop();
             databaseServer.stop();
-            couchbaseLiteServer.stop();
             logger.info("HybridbpmCore stopped");
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);

@@ -39,7 +39,6 @@ public class Role implements Serializable {
     private String name;
     private Translated title;
     private Translated description;
-    transient private Boolean sync;
 
     public Role() {
     }
@@ -78,14 +77,6 @@ public class Role implements Serializable {
 
     public void setDescription(Translated description) {
         this.description = description;
-    }
-
-    public Boolean getSync() {
-        return sync;
-    }
-
-    public void setSync(Boolean sync) {
-        this.sync = sync;
     }
     
     @Override

@@ -18,7 +18,6 @@
  */
 package com.hybridbpm.core.api;
 
-import com.hybridbpm.core.CouchbaseLiteServer;
 import com.hybridbpm.core.util.HybridbpmCoreUtil;
 import com.hybridbpm.core.data.access.Group;
 import com.hybridbpm.core.data.access.RoleGroup;
@@ -35,7 +34,6 @@ import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.iterator.OObjectIteratorClass;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -78,11 +76,6 @@ public class AccessAPI extends AbstractAPI {
             for (Role role : list) {
                 role = database.detachAll(role, true);
                 result.add(role);
-            }
-        }
-        if (CouchbaseLiteServer.getSync()) {
-            for (Role role : result) {
-                role.setSync(SyncAPI.get(User.getSystemUser(), null).isCouchbaseRoleExists(role.getName()));
             }
         }
         return result;

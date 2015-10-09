@@ -55,10 +55,9 @@ public class RolesLayout extends AbstractAccessLayout {
         iTable.addContainerProperty("name", Component.class, null, "Name", null, Table.Align.LEFT);
         iTable.addContainerProperty("title", String.class, null, "Title", null, Table.Align.LEFT);
         iTable.addContainerProperty("description", String.class, null, "Description", null, Table.Align.LEFT);
-        iTable.addContainerProperty("sync", Boolean.class, null, "Sync", null, Table.Align.LEFT);
         iTable.addContainerProperty("actions", TableButtonBar.class, null, "Actions", null, Table.Align.LEFT);
         iTable.setColumnWidth("actions", 70);
-        iTable.setVisibleColumns("name", "title", "description", "sync", "actions");
+        iTable.setVisibleColumns("name", "title", "description", "actions");
     }
 
     @Override
@@ -69,7 +68,6 @@ public class RolesLayout extends AbstractAccessLayout {
             item.getItemProperty("name").setValue(new LinkButton(role.getName(), role, this));
             item.getItemProperty("title").setValue(role.getTitle().getValue(HybridbpmUI.getCurrent().getLocale()));
             item.getItemProperty("description").setValue(role.getTitle().getValue(HybridbpmUI.getCurrent().getLocale()));
-            item.getItemProperty("sync").setValue(role.getSync());
             item.getItemProperty("actions").setValue(getTableButtonBar(role));
         }
         iTable.sort(new Object[]{"title"}, new boolean[]{false});

@@ -18,7 +18,6 @@
  */
 package com.hybridbpm.core.api;
 
-import com.hybridbpm.core.CouchbaseLiteServer;
 import com.hybridbpm.core.HazelcastServer;
 import com.hybridbpm.core.connector.BpmConnector;
 import com.hybridbpm.core.data.access.User;
@@ -27,7 +26,6 @@ import com.hybridbpm.core.data.bpm.File;
 import com.hybridbpm.core.data.bpm.Task;
 import com.hybridbpm.core.data.bpm.Variable;
 import com.hybridbpm.core.data.development.Module;
-import com.hybridbpm.core.data.sync.MobileTask;
 import com.hybridbpm.core.event.BpmEvent;
 import com.hybridbpm.core.event.DashboardNotificationEvent;
 import com.hybridbpm.core.util.DashboardConstant;
@@ -251,36 +249,7 @@ public class InternalAPI extends AbstractAPI {
         }
         if (taskModel != null && taskModel.getMobileForm() != null && !taskModel.getMobileForm().isEmpty()) {
             // TODO: After actor resolver connector, ex. to notify by email???? publishNextExecutor(process, task, null); 
-            createMobileTask(task, taskModel, actors);
-        }
-    }
-
-    public void createMobileTask(final Task task, TaskModel taskModel, List<String> actors) {
-        if (CouchbaseLiteServer.getSync() && task != null) {
-            MobileTask mobileTask = new MobileTask();
-            mobileTask.setId(task.getId().toString());
-            mobileTask.setTaskTitle(task.getTaskTitle());
-            mobileTask.setCaseTitle(task.getCaseTitle());
-            mobileTask.setDueDate(task.getDueDate());
-            mobileTask.setUpdateDate(task.getUpdateDate());
-            mobileTask.setAssigned(task.getAssigned());
-            mobileTask.setExecutor(task.getExecutor());
-            mobileTask.setStatus(task.getStatus());
-            mobileTask.setForm(taskModel.getMobileForm());
-            mobileTask.setTaskPriority(task.getTaskPriority());
-            mobileTask.setOption(task.getOption());
-            mobileTask.setScheduleEndDate(task.getScheduleEndDate());
-            mobileTask.setScheduleStartDate(task.getScheduleStartDate());
-
-            List<String> channels = new ArrayList<>(actors.size());
-            try (OObjectDatabaseTx database = getOObjectDatabaseTx()) {
-                for (String id : actors) {
-                    User u = database.load(new ORecordId(id));
-                    channels.add(u.getUsername());
-                }
-            }
-            mobileTask.setChannels(channels);
-            SyncAPI.get(user, sessionId).saveMobileTask(mobileTask);
+//            createMobileTask(task, taskModel, actors);
         }
     }
 
