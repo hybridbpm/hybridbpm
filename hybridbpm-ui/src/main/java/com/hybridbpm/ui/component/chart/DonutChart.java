@@ -24,6 +24,7 @@ import com.hybridbpm.ui.component.chart.manager.GroupedDataSeriesManager;
 import com.hybridbpm.ui.component.chart.manager.SimpleDataSeriesManager;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.checkNotEmpty;
 import com.hybridbpm.ui.component.chart.color.ChartColorer;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.addon.charts.model.ChartType;
 import com.vaadin.addon.charts.model.Labels;
 import com.vaadin.addon.charts.model.PlotOptionsPie;
@@ -137,7 +138,7 @@ public class DonutChart extends ThreeParamChart {
     @Override
     protected void checkState() {
         super.checkState();
-        checkNotEmpty(chartColorer, HybridbpmUI.getText("color-value-not-set"));
-        checkNotEmpty(chartColorer.getValueColourMap(), HybridbpmUI.getText("color-value-not-set"));
+        checkNotEmpty(chartColorer, Translate.getMessage("color-value-not-set"));
+        checkNotEmpty(chartColorer.getValueColourMap(), Translate.getMessage("color-value-not-set"));
     }
 }

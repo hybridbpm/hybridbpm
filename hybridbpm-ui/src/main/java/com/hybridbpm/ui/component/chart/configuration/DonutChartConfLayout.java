@@ -20,7 +20,7 @@ package com.hybridbpm.ui.component.chart.configuration;
 
 import com.hybridbpm.core.data.chart.DiagrammePreference;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 
 @SuppressWarnings("serial")
 public class DonutChartConfLayout extends ThreeParamChartConfLayout {
@@ -34,7 +34,7 @@ public class DonutChartConfLayout extends ThreeParamChartConfLayout {
         groupByChoice.setRequired(true);
         groupByChoice.setNullSelectionAllowed(false);
 
-        firstColumnChoice.setCaption(HybridbpmUI.getText("outer-donut-field"));
-        groupByChoice.setCaption(HybridbpmUI.getText("inner-donut-field"));
+        firstColumnChoice.setCaption(Translate.getMessage("outer-donut-field"));
+        groupByChoice.setCaption(Translate.getMessage("inner-donut-field"));
     }
 }

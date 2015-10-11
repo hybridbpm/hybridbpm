@@ -20,7 +20,7 @@ package com.hybridbpm.ui.component;
 
 import com.hybridbpm.core.data.bpm.File;
 import com.hybridbpm.model.FileModel;
-import com.hybridbpm.ui.HybridbpmStyle;
+import com.hybridbpm.ui.util.HybridbpmStyle;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Upload;

@@ -16,17 +16,28 @@
  * the License.
  *
  */
-package com.hybridbpm.ui;
+package com.hybridbpm.ui.util;
+
+import com.hybridbpm.ui.HybridbpmUI;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 /**
- *
- * @author Marat Gubaidullin
  */
-public class HybridbpmStyle {
+@SuppressWarnings({"serial", "unchecked"})
+public final class Translate {
 
-    public static final String LAYOUT_PADDING16 = "padding16";
-    public static final String LAYOUT_PADDING8 = "padding8";
-    public static final String OVERFLOW_HIDDEN = "overflow-hidden";
+    public static String getMessage(String key) {
+        return getMessage(key, HybridbpmUI.getCurrent().getLocale());
+    }
 
-    
+    public static String getMessage(String key, Locale locale) {
+        ResourceBundle bundle= ResourceBundle.getBundle("MessagesBundle", locale);
+        if (bundle.containsKey(key)) {
+            return bundle.getString(key);
+        } else {
+            return key;
+        }
+    }
 }

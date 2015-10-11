@@ -18,7 +18,7 @@
  */
 package com.hybridbpm.ui.component.dashboard.tab;
 
-import com.hybridbpm.ui.HybridbpmStyle;
+import com.hybridbpm.ui.util.HybridbpmStyle;
 import com.hybridbpm.ui.component.dashboard.panel.DashboardPanel;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Layout;

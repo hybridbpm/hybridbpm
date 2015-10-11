@@ -21,7 +21,7 @@ package com.hybridbpm.ui.component.chart.configuration;
 import com.hybridbpm.core.data.chart.DiagrammePreference;
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 
 @SuppressWarnings("serial")
 public class PieChartConfLayout extends ChartConfigureLayout {
@@ -54,6 +54,6 @@ public class PieChartConfLayout extends ChartConfigureLayout {
     @Override
     protected void setupChartConfig() {
         valuesColumnSortOrder.setEnabled(true);
-        firstColumnChoice.setCaption(HybridbpmUI.getText("labels"));
+        firstColumnChoice.setCaption(Translate.getMessage("labels"));
     }
 }

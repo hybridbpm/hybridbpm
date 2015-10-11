@@ -25,6 +25,7 @@ import com.hybridbpm.ui.component.chart.manager.GaugeSeriesManager;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.checkNotEmpty;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.chart.color.ColourUtil;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.addon.charts.model.*;
 import com.vaadin.addon.charts.model.style.SolidColor;
 import com.vaadin.data.Container;
@@ -111,9 +112,9 @@ public class GaugeChart extends TwoParamChart {
     @Override
     protected void checkState() {
         super.checkState();
-        checkNotEmpty(plotBandList, HybridbpmUI.getText("plot-band-not-set"));
-        checkNotEmpty(maxValue, HybridbpmUI.getText("max-value-not-set"));
-        checkNotEmpty(minValue, HybridbpmUI.getText("min-value-not-set"));
+        checkNotEmpty(plotBandList, Translate.getMessage("plot-band-not-set"));
+        checkNotEmpty(maxValue, Translate.getMessage("max-value-not-set"));
+        checkNotEmpty(minValue, Translate.getMessage("min-value-not-set"));
     }
 
     @Override

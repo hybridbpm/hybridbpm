@@ -20,7 +20,7 @@ package com.hybridbpm.ui.component.chart.color;
 
 import com.hybridbpm.core.data.chart.DiagrammePreference;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.getPreferenceValue;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.hybridbpm.ui.component.chart.configuration.PreferencesLayoutTemplate;
 import com.vaadin.addon.charts.model.style.Color;
 import com.vaadin.addon.charts.model.style.SolidColor;
@@ -55,21 +55,21 @@ public class ChartColorLayout extends PreferencesLayoutTemplate {
         colorTable.setWidth("100%");
         colorTable.setEditable(false);
 
-        colorTable.addContainerProperty(HybridbpmUI.getText("identity"), String.class, null);
-        colorTable.addContainerProperty(HybridbpmUI.getText("colour"), ColorPicker.class, null);
-        colorTable.setColumnWidth(HybridbpmUI.getText("colour"), 58);
+        colorTable.addContainerProperty(Translate.getMessage("identity"), String.class, null);
+        colorTable.addContainerProperty(Translate.getMessage("colour"), ColorPicker.class, null);
+        colorTable.setColumnWidth(Translate.getMessage("colour"), 58);
 
         colorTable.setSortEnabled(false);
         colorTable.setPageLength(9);
 
         // TODO dataset descriptor seems to be redundant
-        String header = HybridbpmUI.getText("identity");
+        String header = Translate.getMessage("identity");
         String dataSetDescriptor = getPreferenceValue(DiagrammePreference.DATASET_DESCRIPTOR, preferences);
         if (dataSetDescriptor != null) {
             header = dataSetDescriptor.substring(0, dataSetDescriptor.indexOf("(java"));
         }
 
-        colorTable.setColumnHeaders(header, HybridbpmUI.getText("colour"));
+        colorTable.setColumnHeaders(header, Translate.getMessage("colour"));
 
         fillTable();
 

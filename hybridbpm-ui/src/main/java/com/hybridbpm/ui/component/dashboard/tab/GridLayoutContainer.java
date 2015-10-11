@@ -20,7 +20,7 @@ package com.hybridbpm.ui.component.dashboard.tab;
 
 import com.hybridbpm.core.data.dashboard.PanelDefinition;
 import com.hybridbpm.core.data.dashboard.TabDefinition;
-import com.hybridbpm.ui.HybridbpmStyle;
+import com.hybridbpm.ui.util.HybridbpmStyle;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.dashboard.panel.AddColumnButton;
 import com.hybridbpm.ui.component.dashboard.panel.DashboardPanel;

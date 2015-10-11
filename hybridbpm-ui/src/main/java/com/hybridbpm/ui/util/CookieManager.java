@@ -16,7 +16,7 @@
  * the License.
  *
  */
-package com.hybridbpm.ui;
+package com.hybridbpm.ui.util;
 
 import com.vaadin.ui.JavaScript;
 import com.vaadin.ui.JavaScriptFunction;

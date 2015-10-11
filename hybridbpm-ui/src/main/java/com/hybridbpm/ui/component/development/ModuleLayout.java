@@ -22,7 +22,7 @@ import com.hybridbpm.ui.component.TranslatedField;
 import com.hybridbpm.core.data.development.Module;
 import com.hybridbpm.core.util.HybridbpmCoreUtil;
 import com.hybridbpm.ui.HybridbpmUI;
-import com.hybridbpm.ui.IcoMoon;
+import com.hybridbpm.ui.util.IcoMoon;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;

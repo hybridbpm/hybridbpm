@@ -18,6 +18,9 @@
  */
 package com.hybridbpm.ui;
 
+import com.hybridbpm.ui.util.DashBoardMessageListener;
+import com.hybridbpm.ui.util.CookieManager;
+import com.hybridbpm.ui.util.DashBoardNotificationMessageListener;
 import com.hybridbpm.core.HazelcastServer;
 import com.hybridbpm.core.api.AccessAPI;
 import com.hybridbpm.core.api.BpmAPI;
@@ -53,7 +56,6 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.themes.ValoTheme;
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
@@ -90,14 +92,12 @@ public class HybridbpmUI extends UI {
     private String notificationListenerId = null;
     private View currentView;
     private String redirectView;
-    private ResourceBundle messages = null;
     private Boolean developerMode = Boolean.FALSE;
 
     @Override
     protected void init(VaadinRequest request) {
         Responsive.makeResponsive(this);
         setLocale(request.getLocale());
-        prepareMessages();
         dashboardListenerId = HazelcastServer.getDashboardEventTopic().addMessageListener(new DashBoardMessageListener(this));
         addStyleName(ValoTheme.UI_WITH_MENU);
 
@@ -114,7 +114,6 @@ public class HybridbpmUI extends UI {
         if (user != null) {
 //         Authenticated user
             setLocale(user.getLocale()!=null ? Locale.forLanguageTag(user.getLocale()) : getLocale());
-            prepareMessages();
             setContent(rootLayout);
             removeStyleName("loginview");
             buildMenu(redirectView, true, null);
@@ -181,7 +180,7 @@ public class HybridbpmUI extends UI {
         }
     }
 
-    protected void buildMenu(String viewUrl, boolean navigate, String selectedUrl) {
+    public void buildMenu(String viewUrl, boolean navigate, String selectedUrl) {
         usersMenu.search(null);
         navigator = new HybridbpmNavigator(this, viewContent);
         mainMenu.cleanMenu();
@@ -257,34 +256,6 @@ public class HybridbpmUI extends UI {
         return usersMenu;
     }
     
-    public ResourceBundle getMessages() {
-        return messages;
-    }
-
-    public void setMessages(ResourceBundle messages) {
-        this.messages = messages;
-    }
-
-    public String getMessage(String key) {
-        if (messages.containsKey(key)) {
-            return messages.getString(key);
-        } else {
-            return key;
-        }
-    }
-    
-    public static String getText(String key) {
-        return HybridbpmUI.getCurrent().getMessage(key);
-    }
-
-    private void prepareMessages() {
-       try {
-           messages = ResourceBundle.getBundle("MessageBundle", getLocale());
-       } catch (Exception e){
-           messages = ResourceBundle.getBundle("MessageBundle", Locale.US);
-       }
-    }
-
     public static Boolean getDeveloperMode() {
         return HybridbpmUI.getCurrent().developerMode;
     }
@@ -292,6 +263,9 @@ public class HybridbpmUI extends UI {
     public static void setDeveloperMode(Boolean developerMode) {
         HybridbpmUI.getCurrent().developerMode = developerMode;
     }
-    
+
+    public MainMenu getMainMenu() {
+        return mainMenu;
+    }
     
 }

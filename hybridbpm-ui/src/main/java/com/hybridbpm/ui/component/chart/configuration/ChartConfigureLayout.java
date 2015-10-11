@@ -30,6 +30,7 @@ import com.hybridbpm.core.data.chart.DiagrammePreferenceValue;
 import com.hybridbpm.core.data.chart.SortBy;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.getPreferenceValue;
 import com.vaadin.data.Property;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.data.util.converter.StringToIntegerConverter;
@@ -46,16 +47,16 @@ public abstract class ChartConfigureLayout extends PreferencesLayoutTemplate {
 
     private static final long serialVersionUID = 1L;
 
-    protected final TextField refresh = new TextField(HybridbpmUI.getText("refresh"));
+    protected final TextField refresh = new TextField(Translate.getMessage("refresh"));
     protected final VerticalLayout verticalLayout = new VerticalLayout(refresh);
     protected final HorizontalLayout horizontalLayout = new HorizontalLayout(verticalLayout);
     protected final HorizontalLayout firstColumnAndSortLayout = new HorizontalLayout();
     protected final HorizontalLayout valuesColumnAndSortLayout = new HorizontalLayout();
 
-    protected final ComboBox firstColumnChoice = new ComboBox(HybridbpmUI.getText("x-axis"), new BeanItemContainer<>(DiagrammePreferenceValue.class));
-    protected final ComboBox valuesColumnChoice = new ComboBox(HybridbpmUI.getText("values"), new BeanItemContainer<>(DiagrammePreferenceValue.class));
-    protected final ComboBox firstColumnSortOrder = new ComboBox(HybridbpmUI.getText("sort by"));
-    protected final ComboBox valuesColumnSortOrder = new ComboBox(HybridbpmUI.getText("sort by"));
+    protected final ComboBox firstColumnChoice = new ComboBox(Translate.getMessage("x-axis"), new BeanItemContainer<>(DiagrammePreferenceValue.class));
+    protected final ComboBox valuesColumnChoice = new ComboBox(Translate.getMessage("values"), new BeanItemContainer<>(DiagrammePreferenceValue.class));
+    protected final ComboBox firstColumnSortOrder = new ComboBox(Translate.getMessage("sort by"));
+    protected final ComboBox valuesColumnSortOrder = new ComboBox(Translate.getMessage("sort by"));
 
     private Property.ValueChangeListener firstChoiceHandler;
 

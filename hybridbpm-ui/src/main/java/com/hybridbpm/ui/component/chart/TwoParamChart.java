@@ -22,7 +22,7 @@ import com.hybridbpm.core.data.chart.DiagrammePreference;
 import com.hybridbpm.core.data.chart.DiagrammePreferenceValue;
 import com.hybridbpm.core.data.chart.SortBy;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.checkNotEmpty;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;
 
@@ -181,9 +181,9 @@ public abstract class TwoParamChart extends AbstractChart {
 
     @Override
     protected void checkState() {
-        checkNotEmpty(firstColumnName, HybridbpmUI.getText("first-column-not-set"));
-        checkNotEmpty(valuesColumnName, HybridbpmUI.getText("values-column-not-set"));
-        checkNotEmpty(getContainer(), HybridbpmUI.getText("container-not-set"));
+        checkNotEmpty(firstColumnName, Translate.getMessage("first-column-not-set"));
+        checkNotEmpty(valuesColumnName, Translate.getMessage("values-column-not-set"));
+        checkNotEmpty(getContainer(), Translate.getMessage("container-not-set"));
     }
 
     protected String getFirstColumnName() {

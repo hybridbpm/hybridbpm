@@ -16,7 +16,7 @@
  * the License.
  *
  */
-package com.hybridbpm.ui;
+package com.hybridbpm.ui.util;
 
 import com.hybridbpm.core.api.DevelopmentAPI;
 import com.hybridbpm.core.data.development.Module;

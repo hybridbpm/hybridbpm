@@ -19,9 +19,9 @@
 package com.hybridbpm.ui.component.development;
 
 import com.hybridbpm.core.data.development.Module;
-import com.hybridbpm.ui.HybridbpmStyle;
+import com.hybridbpm.ui.util.HybridbpmStyle;
 import com.hybridbpm.ui.HybridbpmUI;
-import com.hybridbpm.ui.HybridbpmUiUtil;
+import com.hybridbpm.ui.util.HybridbpmUiUtil;
 import com.hybridbpm.ui.component.bpm.window.FormConfigureWindow;
 import com.hybridbpm.ui.view.DevelopmentView;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;

@@ -19,8 +19,8 @@
 package com.hybridbpm.ui.component.chart.util;
 
 import com.hybridbpm.core.data.chart.DiagrammePreference;
-import com.hybridbpm.ui.HybridbpmUI;
-import com.hybridbpm.ui.IcoMoon;
+import com.hybridbpm.ui.util.Translate;
+import com.hybridbpm.ui.util.IcoMoon;
 import com.hybridbpm.ui.component.chart.AbstractChart;
 import com.hybridbpm.ui.component.chart.AreaChartBuilder;
 import com.hybridbpm.ui.component.chart.BarChartBuilder;
@@ -191,7 +191,7 @@ public enum DiagrammeChartType {
      * @return The name of the chart type, as displayed in the UI
      */
     public String getName() {
-        return HybridbpmUI.getText(name);
+        return Translate.getMessage(name);
     }
 
     /**

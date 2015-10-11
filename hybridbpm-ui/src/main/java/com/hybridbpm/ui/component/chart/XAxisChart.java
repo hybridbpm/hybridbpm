@@ -22,7 +22,7 @@ import com.hybridbpm.core.data.chart.DiagrammePreference;
 import com.hybridbpm.ui.component.chart.manager.XYSeriesManager;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.checkNotEmpty;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.getCategoriesNames;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.hybridbpm.ui.component.chart.color.ChartColorer;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.XAxis;
@@ -104,8 +104,8 @@ public abstract class XAxisChart extends TwoParamChart {
     @Override
     protected void checkState() {
         super.checkState();
-        checkNotEmpty(chartColorer, HybridbpmUI.getText("color-value-not-set"));
-        checkNotEmpty(chartColorer.getValueColourMap(), HybridbpmUI.getText("color-value-not-set"));
+        checkNotEmpty(chartColorer, Translate.getMessage("color-value-not-set"));
+        checkNotEmpty(chartColorer.getValueColourMap(), Translate.getMessage("color-value-not-set"));
     }
 
 }

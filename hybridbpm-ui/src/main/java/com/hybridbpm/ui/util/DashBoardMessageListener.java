@@ -16,11 +16,12 @@
  * the License.
  *
  */
-package com.hybridbpm.ui;
+package com.hybridbpm.ui.util;
 
 import com.hazelcast.core.Message;
 import com.hazelcast.core.MessageListener;
 import com.hybridbpm.core.event.DashboardEvent;
+import com.hybridbpm.ui.HybridbpmUI;
 import com.vaadin.server.VaadinSession;
 import java.util.logging.Level;
 import java.util.logging.Logger;

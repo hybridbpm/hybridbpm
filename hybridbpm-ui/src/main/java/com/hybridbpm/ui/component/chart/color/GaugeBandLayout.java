@@ -19,10 +19,9 @@
 package com.hybridbpm.ui.component.chart.color;
 
 import com.hybridbpm.core.data.chart.DiagrammePreference;
-import com.hybridbpm.core.data.chart.DiagrammePreferenceValue;
 import com.hybridbpm.core.data.chart.PlotBandPreference;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.getPreferenceValue;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.hybridbpm.ui.component.chart.configuration.PreferencesLayoutTemplate;
 import com.vaadin.data.Property;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -46,7 +45,7 @@ public class GaugeBandLayout extends PreferencesLayoutTemplate {
 
     private final VerticalLayout bandAdditionButtonFrame = new VerticalLayout();
 
-    private final Button addBandButton = new Button(HybridbpmUI.getText("add band"));
+    private final Button addBandButton = new Button(Translate.getMessage("add band"));
 
     public GaugeBandLayout(final BeanFieldGroup<DiagrammePreference> preferences) {
         super(preferences);
@@ -79,13 +78,13 @@ public class GaugeBandLayout extends PreferencesLayoutTemplate {
         colorTable.addStyleName(ValoTheme.TABLE_SMALL);
         colorTable.addStyleName("color-table");
 
-        colorTable.addContainerProperty(HybridbpmUI.getText("colour"), ColorPicker.class, null);
-        colorTable.addContainerProperty(HybridbpmUI.getText("start"), TextField.class, null);
-        colorTable.addContainerProperty(HybridbpmUI.getText("end"), TextField.class, null);
+        colorTable.addContainerProperty(Translate.getMessage("colour"), ColorPicker.class, null);
+        colorTable.addContainerProperty(Translate.getMessage("start"), TextField.class, null);
+        colorTable.addContainerProperty(Translate.getMessage("end"), TextField.class, null);
         colorTable.addContainerProperty("remove", Button.class, null);
 
         // COLOR COLUMN
-        colorTable.addGeneratedColumn(HybridbpmUI.getText("colour"), new Table.ColumnGenerator() {
+        colorTable.addGeneratedColumn(Translate.getMessage("colour"), new Table.ColumnGenerator() {
             @Override
             public Object generateCell(Table source, Object itemId, Object columnId) {
                 final Property<String> colorProp = tableContainer.getItem(itemId).getItemProperty("color");
@@ -111,7 +110,7 @@ public class GaugeBandLayout extends PreferencesLayoutTemplate {
         });
 
         // BAND START COLUMN
-        colorTable.addGeneratedColumn(HybridbpmUI.getText("start"), new Table.ColumnGenerator() {
+        colorTable.addGeneratedColumn(Translate.getMessage("start"), new Table.ColumnGenerator() {
             @Override
             public Object generateCell(Table source, Object itemId, Object columnId) {
                 final Property<Double> startProp = tableContainer.getContainerProperty(
@@ -140,7 +139,7 @@ public class GaugeBandLayout extends PreferencesLayoutTemplate {
         });
 
         // BAND END COLUMN
-        colorTable.addGeneratedColumn(HybridbpmUI.getText("end"), new Table.ColumnGenerator() {
+        colorTable.addGeneratedColumn(Translate.getMessage("end"), new Table.ColumnGenerator() {
             @Override
             public Object generateCell(Table source, Object itemId, Object columnId) {
                 final Property<Double> endProp = tableContainer.getContainerProperty(
@@ -187,10 +186,10 @@ public class GaugeBandLayout extends PreferencesLayoutTemplate {
             }
         });
 
-        colorTable.setColumnWidth(HybridbpmUI.getText("colour"), 33);
+        colorTable.setColumnWidth(Translate.getMessage("colour"), 33);
         colorTable.setColumnWidth("remove", 48);
-        colorTable.setColumnExpandRatio(HybridbpmUI.getText("start"), 0.5f);
-        colorTable.setColumnExpandRatio(HybridbpmUI.getText("end"), 0.5f);
+        colorTable.setColumnExpandRatio(Translate.getMessage("start"), 0.5f);
+        colorTable.setColumnExpandRatio(Translate.getMessage("end"), 0.5f);
 
         colorTable.setSortEnabled(false);
         colorTable.setPageLength(0);
@@ -240,6 +239,6 @@ public class GaugeBandLayout extends PreferencesLayoutTemplate {
 
         tableContainer.addAll(plotBandList);
         colorTable.setContainerDataSource(tableContainer);
-        colorTable.setVisibleColumns(HybridbpmUI.getText("colour"), HybridbpmUI.getText("start"), HybridbpmUI.getText("end"), "remove");
+        colorTable.setVisibleColumns(Translate.getMessage("colour"), Translate.getMessage("start"), Translate.getMessage("end"), "remove");
     }
 }

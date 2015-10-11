@@ -16,11 +16,12 @@
  * the License.
  *
  */
-package com.hybridbpm.ui;
+package com.hybridbpm.ui.util;
 
 import com.hazelcast.core.Message;
 import com.hazelcast.core.MessageListener;
 import com.hybridbpm.core.event.DashboardNotificationEvent;
+import com.hybridbpm.ui.HybridbpmUI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,10 +48,10 @@ public class DashBoardNotificationMessageListener implements MessageListener<Das
                     DashboardNotificationEvent event = message.getMessageObject();
                     switch (event.getAction()) {
                         case SHOW:
-                            hybridbpmUI.mainMenu.changeNotification(event.getViewUrl(), true, event.getMessage());
+                            hybridbpmUI.getMainMenu().changeNotification(event.getViewUrl(), true, event.getMessage());
                             break;
                         case REMOVE:
-                            hybridbpmUI.mainMenu.changeNotification(event.getViewUrl(), false, null);
+                            hybridbpmUI.getMainMenu().changeNotification(event.getViewUrl(), false, null);
                             break;
                     }
 

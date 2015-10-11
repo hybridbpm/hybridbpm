@@ -25,6 +25,7 @@ import com.hybridbpm.core.util.DashboardConstant;
 import com.hybridbpm.model.TaskModel;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.AbstractTableLayout;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.data.Item;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.MarginInfo;
@@ -76,15 +77,15 @@ public class TaskListLayout extends AbstractTableLayout {
 
     @Override
     public void prepareTable() {
-        iTable.addContainerProperty("id", String.class, null, "ID", null, Table.Align.LEFT);
-        iTable.addContainerProperty("taskPriority", TaskModel.TASK_PRIORITY.class, null, "Priority", null, Table.Align.LEFT);
-        iTable.addContainerProperty("taskTitle", String.class, null, "Task", null, Table.Align.LEFT);
+        iTable.addContainerProperty("id", String.class, null, Translate.getMessage("id"), null, Table.Align.LEFT);
+        iTable.addContainerProperty("taskPriority", TaskModel.TASK_PRIORITY.class, null, Translate.getMessage("priority"), null, Table.Align.LEFT);
+        iTable.addContainerProperty("taskTitle", String.class, null, Translate.getMessage("taskTitle"), null, Table.Align.LEFT);
         iTable.setColumnExpandRatio("taskTitle", 1f);
         iTable.addGeneratedColumn("taskTitle", new OpenTaskColumnGenerator(this));
-        iTable.addContainerProperty("caseTitle", String.class, null, "Process", null, Table.Align.LEFT);
+        iTable.addContainerProperty("caseTitle", String.class, null, Translate.getMessage("caseTitle"), null, Table.Align.LEFT);
         iTable.setColumnExpandRatio("caseTitle", 1f);
-        iTable.addContainerProperty("updateDate", Date.class, null, "Update date", null, Table.Align.LEFT);
-        iTable.addContainerProperty("dueDate", Date.class, null, "Due date", null, Table.Align.LEFT);
+        iTable.addContainerProperty("updateDate", Date.class, null, Translate.getMessage("updateDate"), null, Table.Align.LEFT);
+        iTable.addContainerProperty("dueDate", Date.class, null, Translate.getMessage("dueDate"), null, Table.Align.LEFT);
         iTable.setColumnWidth("dueDate", 150);
         iTable.setColumnWidth("updateDate", 150);
         iTable.addGeneratedColumn("dueDate", new DateColumnGenerator());

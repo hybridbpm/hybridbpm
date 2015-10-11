@@ -18,11 +18,11 @@
  */
 package com.hybridbpm.ui.view;
 
-import com.hybridbpm.core.data.bpm.Task;
 import com.hybridbpm.core.util.DashboardConstant;
 import com.hybridbpm.model.TaskModel;
 import com.hybridbpm.ui.component.AbstractTableLayout;
 import com.hybridbpm.ui.component.bpm.TaskListLayout;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -39,7 +39,7 @@ import com.vaadin.ui.declarative.Design;
 public final class TaskListView extends AbstractView implements View, Button.ClickListener, TabSheet.SelectedTabChangeListener, TabSheet.CloseHandler {
 
     public static final String VIEW_URL = DashboardConstant.VIEW_URL_TASKS;
-    public static final String TITLE = "Tasks";
+    public static final String TITLE = Translate.getMessage("tasks");
     public static final String ICON = FontAwesome.TASKS.name();
     public static final Integer ORDER = Integer.MAX_VALUE - 5;
 
@@ -53,8 +53,8 @@ public final class TaskListView extends AbstractView implements View, Button.Cli
         Design.read(this);
         Responsive.makeResponsive(panelLayout);
         tabSheet.setSizeFull();
-        tabSheet.addTab(todoListLayout, "Todo", FontAwesome.ENVELOPE);
-        tabSheet.addTab(doneListLayout, "Done", FontAwesome.ARCHIVE);
+        tabSheet.addTab(todoListLayout, Translate.getMessage("todo"), FontAwesome.ENVELOPE);
+        tabSheet.addTab(doneListLayout, Translate.getMessage("done"), FontAwesome.ARCHIVE);
         tabSheet.addSelectedTabChangeListener(this);
         tabSheet.setCloseHandler(this);
         todoListLayout.refreshTable();

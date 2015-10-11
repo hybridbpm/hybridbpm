@@ -19,10 +19,12 @@
 package com.hybridbpm.ui.view;
 
 import com.hybridbpm.core.util.DashboardConstant;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.declarative.Design;
 
 @DesignRoot
@@ -30,11 +32,13 @@ import com.vaadin.ui.declarative.Design;
 public final class ErrorView extends AbstractView implements View{
     
     public static final String VIEW_URL = DashboardConstant.VIEW_URL_ERROR;
-    public static final String TITLE = "Page not found";
+    public static final String TITLE = Translate.getMessage("page-not-found");
     public static final String ICON = FontAwesome.EXCLAMATION.name();
+    private Label label;
 
     public ErrorView() {
         Design.read(this);
+        label.setValue(Translate.getMessage("page-not-found"));
     }
 
     @Override

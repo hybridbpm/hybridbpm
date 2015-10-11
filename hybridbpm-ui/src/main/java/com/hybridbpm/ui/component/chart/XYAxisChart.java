@@ -24,6 +24,7 @@ import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.checkNotEmpty;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.getCategoriesNames;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.chart.color.ChartColorer;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.addon.charts.model.AbstractPlotOptions;
 import com.vaadin.addon.charts.model.XAxis;
 import com.vaadin.addon.charts.model.YAxis;
@@ -112,7 +113,7 @@ public abstract class XYAxisChart extends ThreeParamChart {
     @Override
     protected void checkState() {
         super.checkState();
-        checkNotEmpty(chartColorer, HybridbpmUI.getText("color-value-not-set"));
-        checkNotEmpty(chartColorer.getValueColourMap(), HybridbpmUI.getText("color-value-not-set"));
+        checkNotEmpty(chartColorer, Translate.getMessage("color-value-not-set"));
+        checkNotEmpty(chartColorer.getValueColourMap(), Translate.getMessage("color-value-not-set"));
     }
 }

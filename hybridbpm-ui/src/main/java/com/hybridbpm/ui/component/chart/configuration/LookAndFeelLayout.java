@@ -29,7 +29,7 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.VerticalLayout;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 
 /**
  * @author mgubaidullin
@@ -40,7 +40,7 @@ public class LookAndFeelLayout extends PreferencesLayoutTemplate {
     private AbstractChart chart;
     private PreferencesLayoutTemplate colorLayout;
 
-    private final Button btnPreview = new Button(HybridbpmUI.getText("preview"));
+    private final Button btnPreview = new Button(Translate.getMessage("preview"));
 
     private final HorizontalSplitPanel splitLayout = new HorizontalSplitPanel();
     private final VerticalLayout chartSplit = new VerticalLayout();

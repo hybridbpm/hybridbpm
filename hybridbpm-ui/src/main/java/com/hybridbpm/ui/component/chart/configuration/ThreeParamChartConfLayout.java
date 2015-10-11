@@ -33,7 +33,7 @@ import com.vaadin.shared.ui.combobox.FilteringMode;
 import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.HorizontalLayout;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 
 import java.util.List;
 
@@ -43,9 +43,9 @@ public class ThreeParamChartConfLayout extends ChartConfigureLayout {
     private static final long serialVersionUID = 1L;
 
     protected final HorizontalLayout groupByAndSortLayout = new HorizontalLayout();
-    protected final ComboBox groupByChoice = new ComboBox(HybridbpmUI.getText("group by"),
+    protected final ComboBox groupByChoice = new ComboBox(Translate.getMessage("group by"),
             new BeanItemContainer<>(DiagrammePreferenceValue.class));
-    protected final ComboBox sortByChoiceGroup = new ComboBox(HybridbpmUI.getText("sort by"));
+    protected final ComboBox sortByChoiceGroup = new ComboBox(Translate.getMessage("sort by"));
 
     private Property.ValueChangeListener secondChoiceHandler;
 
@@ -92,8 +92,8 @@ public class ThreeParamChartConfLayout extends ChartConfigureLayout {
     }
 
     protected void setupColumns() {
-        firstColumnChoice.setCaption(HybridbpmUI.getText("x-axis-field"));
-        groupByChoice.setCaption(HybridbpmUI.getText("group-by-field"));
+        firstColumnChoice.setCaption(Translate.getMessage("x-axis-field"));
+        groupByChoice.setCaption(Translate.getMessage("group-by-field"));
     }
 
     @Override

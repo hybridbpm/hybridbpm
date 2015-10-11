@@ -18,9 +18,9 @@
  */
 package com.hybridbpm.ui.view;
 
-import com.hybridbpm.core.data.access.User;
-import com.hybridbpm.ui.CookieManager;
+import com.hybridbpm.ui.util.CookieManager;
 import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
@@ -43,16 +43,16 @@ import com.vaadin.ui.themes.ValoTheme;
 @SuppressWarnings("serial")
 public class LoginView extends VerticalLayout {
 
-    final Label welcome = new Label("Login");
+    final Label welcome = new Label(Translate.getMessage("login"));
     final Label title = new Label("HYBRIDBPM", ContentMode.HTML);
     final CssLayout labels = new CssLayout(welcome, title);
 
-    final TextField username = new TextField("Username");
-    final PasswordField password = new PasswordField("Password");
-    final Button signin = new Button("Sign In");
+    final TextField username = new TextField(Translate.getMessage("username"));
+    final PasswordField password = new PasswordField(Translate.getMessage("password"));
+    final Button signin = new Button(Translate.getMessage("sign-in"));
     final HorizontalLayout fields = new HorizontalLayout(username, password, signin);
 
-    final CheckBox rememberMe = new CheckBox("Remember me", false);
+    final CheckBox rememberMe = new CheckBox(Translate.getMessage("remember-me"), false);
 
     final VerticalLayout loginPanel = new VerticalLayout(labels, fields, rememberMe);
 
@@ -61,13 +61,9 @@ public class LoginView extends VerticalLayout {
         buildLoginForm();
         addComponent(loginPanel);
         setComponentAlignment(loginPanel, Alignment.MIDDLE_CENTER);
-        CookieManager.getCookieValue(HybridbpmUI.COOKIENAME_USERNAME, new CookieManager.Callback() {
-
-            @Override
-            public void onValue(String value) {
-                if (value != null && !value.isEmpty() && !value.equalsIgnoreCase("null")) {
-                    username.setValue(value);
-                }
+        CookieManager.getCookieValue(HybridbpmUI.COOKIENAME_USERNAME, (String value) -> {
+            if (value != null && !value.isEmpty() && !value.equalsIgnoreCase("null")) {
+                username.setValue(value);
             }
         });
     }
@@ -109,12 +105,8 @@ public class LoginView extends VerticalLayout {
 
         fields.setComponentAlignment(signin, Alignment.BOTTOM_LEFT);
 
-        signin.addClickListener(new Button.ClickListener() {
-
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                HybridbpmUI.getCurrent().login(username.getValue(), password.getValue(), rememberMe.getValue());
-            }
+        signin.addClickListener((Button.ClickEvent event) -> {
+            HybridbpmUI.getCurrent().login(username.getValue(), password.getValue(), rememberMe.getValue());
         });
     }
 

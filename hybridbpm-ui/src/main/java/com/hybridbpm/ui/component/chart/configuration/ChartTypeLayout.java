@@ -26,13 +26,13 @@ import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.VerticalLayout;
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 
 
 @SuppressWarnings("serial")
 public class ChartTypeLayout extends PreferencesLayoutTemplate implements Property.ValueChangeListener {
 
-    private final OptionGroup chartTypeGroup = new OptionGroup(HybridbpmUI.getText("choose-chart-type"));
+    private final OptionGroup chartTypeGroup = new OptionGroup(Translate.getMessage("choose-chart-type"));
     private final VerticalLayout chartConfigureContainer = new VerticalLayout();
     private final HorizontalLayout mainLayout = new HorizontalLayout(chartTypeGroup, chartConfigureContainer);
     private ChartConfigureLayout currentLayout;

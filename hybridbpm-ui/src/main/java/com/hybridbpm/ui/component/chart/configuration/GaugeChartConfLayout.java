@@ -18,7 +18,7 @@
  */
 package com.hybridbpm.ui.component.chart.configuration;
 
-import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.hybridbpm.core.data.chart.DiagrammePreference;
 import static com.hybridbpm.core.data.chart.DiagrammePreference.MAX_VALUE;
 import static com.hybridbpm.core.data.chart.DiagrammePreference.MIN_VALUE;
@@ -60,8 +60,8 @@ public class GaugeChartConfLayout extends ChartConfigureLayout {
 
     protected final HorizontalLayout gaugeAdditionsLayout = new HorizontalLayout();
 
-    protected final TextField minValue = new TextField(HybridbpmUI.getText("minimum-value"));
-    protected final TextField maxValue = new TextField(HybridbpmUI.getText("maximum-value"));
+    protected final TextField minValue = new TextField(Translate.getMessage("minimum-value"));
+    protected final TextField maxValue = new TextField(Translate.getMessage("maximum-value"));
 
     private ValueChangeListener valuesChoiceHandler;
 
@@ -92,7 +92,7 @@ public class GaugeChartConfLayout extends ChartConfigureLayout {
         valuesColumnSortOrder.setEnabled(false);
         firstColumnSortOrder.setEnabled(false);
 
-        firstColumnChoice.setCaption(HybridbpmUI.getText("labels"));
+        firstColumnChoice.setCaption(Translate.getMessage("labels"));
         gaugeAdditionsLayout.setVisible(true);
 
         maxValue.setRequired(true);
