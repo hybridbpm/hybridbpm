@@ -164,7 +164,7 @@ public class TaskLayout extends VerticalLayout implements Button.ClickListener, 
             task = new Task();
             task.setInitiator(HybridbpmUI.getUser().getUsername());
             task.setStartDate(startDate);
-            task.setStatus(Task.STATUS.TODO);
+            task.setStatus(TaskModel.STATUS.TODO);
             task.setCaseTitle(processModule.getTitle().getValue(HybridbpmUI.getCurrent().getLocale()));
             task.setTaskTitle(taskModel.getTitle());
 //            task.setCaseCode("#");
@@ -240,7 +240,7 @@ public class TaskLayout extends VerticalLayout implements Button.ClickListener, 
             }
         }
         // for other statuses than TODO
-        if (!Objects.equals(task.getStatus(), Task.STATUS.TODO)) {
+        if (!Objects.equals(task.getStatus(), TaskModel.STATUS.TODO)) {
             btnAccept.setVisible(false);
             btnSave.setVisible(false);
             btnSend.setVisible(false);

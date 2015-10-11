@@ -47,6 +47,7 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
+import java.net.URLDecoder;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,8 +57,12 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -93,11 +98,24 @@ public class HybridbpmCoreUtil {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(token_data.getBytes("UTF-8"));
             byte[] bytes = md.digest();
-            return (new HexBinaryAdapter()).marshal(bytes);
+            return new HexBinaryAdapter().marshal(bytes);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
             logger.severe(ex.getMessage());
         }
         return null;
+    }
+
+    public static LocalDateTime toLocalDateTime(Date date) {
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        ZonedDateTime zdt = cal.toZonedDateTime();
+        return zdt.toLocalDateTime();
+    }
+
+    public static Date toDate(LocalDateTime ldt) {
+        ZonedDateTime zdt = ZonedDateTime.of(ldt, ZoneId.systemDefault());
+        GregorianCalendar cal = GregorianCalendar.from(zdt);
+        return cal.getTime();
     }
 
     public static boolean isInteger(String str) {

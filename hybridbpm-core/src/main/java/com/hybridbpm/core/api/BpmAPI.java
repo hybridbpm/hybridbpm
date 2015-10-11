@@ -98,7 +98,7 @@ public class BpmAPI extends AbstractAPI {
                 titles.put(document.field("name").toString(), translated);
             }
 
-            List<Task> list = database.query(new OSQLSynchQuery<Task>(request1), Task.STATUS.TODO, user.getUsername(), user.getUsername(), Task.STATUS.TODO);
+            List<Task> list = database.query(new OSQLSynchQuery<Task>(request1), TaskModel.STATUS.TODO, user.getUsername(), user.getUsername(), TaskModel.STATUS.TODO);
             list = detachList(list);
             for (Task task : list){
                 task.setCaseTitle(titles.get(task.getProcessModelName()).getValue(locale));
@@ -117,7 +117,7 @@ public class BpmAPI extends AbstractAPI {
                 titles.put(document.field("name").toString(), translated);
             }
             
-            List<Task> list = database.query(new OSQLSynchQuery<Task>(request1), user.getUsername(), Task.STATUS.FINISHED);
+            List<Task> list = database.query(new OSQLSynchQuery<Task>(request1), user.getUsername(), TaskModel.STATUS.FINISHED);
             list = detachList(list);
             for (Task task : list){
                 task.setCaseTitle(titles.get(task.getProcessModelName()).getValue(locale));
@@ -173,7 +173,7 @@ public class BpmAPI extends AbstractAPI {
         return result;
     }
 
-    public Integer getMyTaskCount(Task.STATUS status) {
+    public Integer getMyTaskCount(TaskModel.STATUS status) {
         try (OObjectDatabaseTx database = getOObjectDatabaseTx()) {
             List<ODocument> counter = database.query(new OSQLSynchQuery<ODocument>("SELECT COUNT(1) FROM Task WHERE status = '" + status + "' AND '" + user.getUsername() + "' in actors", 1));
             Integer count = counter.size() > 0 ? Integer.parseInt(counter.get(0).field("COUNT").toString()) : 0;

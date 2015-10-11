@@ -54,7 +54,7 @@ public class TaskModel implements Serializable {
     private String mobileForm;
     public static final Float defaultWidth = 100f;
     public static final Float defaultHeight = 50f;
-    
+
     public enum GATE_TYPE {
 
         PARALLEL, EXLUSIVE//, INCLUSIVE, COMPLEX
@@ -69,7 +69,7 @@ public class TaskModel implements Serializable {
     public enum TASK_PRIORITY {
 
         NORMAL(null), IMPORTANT("EXCLAMATION");
-        
+
         private final String icon;
 
         private TASK_PRIORITY(String icon) {
@@ -80,6 +80,24 @@ public class TaskModel implements Serializable {
             return icon;
         }
     }
+
+    public enum STATUS {
+
+        CREATED, // task created  
+        PUBLISHED, //   connector published 
+        TODO, // task ready for user (actor resolved)
+        FINISHED, // task done by user or engine
+        TERMINATED, // task execution terminated
+        ERROR // task execution error
+    };
+
+    private ACTOR_OPTION option;
+
+    public enum ACTOR_OPTION {
+
+        ESCALATED, // task escalated  
+        DELEGATED // task delegated
+    };
 
     public TaskModel() {
         this.id = UUID.randomUUID().toString();
@@ -135,7 +153,7 @@ public class TaskModel implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public String getId() {
         return id;
     }
@@ -199,19 +217,19 @@ public class TaskModel implements Serializable {
     public void setSplitType(GATE_TYPE splitType) {
         this.splitType = splitType;
     }
-    
-    public void removeTransitionById(String id){
+
+    public void removeTransitionById(String id) {
         List<TransitionModel> incoming = new ArrayList();
-        for (TransitionModel transitionModel : getIncomingTransitionModel()){
-            if (!transitionModel.getId().equals(id)){
+        for (TransitionModel transitionModel : getIncomingTransitionModel()) {
+            if (!transitionModel.getId().equals(id)) {
                 incoming.add(transitionModel);
             }
         }
         setIncomingTransitionModel(incoming);
-        
+
         List<TransitionModel> outgoing = new ArrayList();
-        for (TransitionModel transitionModel : getOutgoingTransitionModel()){
-            if (!transitionModel.getId().equals(id)){
+        for (TransitionModel transitionModel : getOutgoingTransitionModel()) {
+            if (!transitionModel.getId().equals(id)) {
                 outgoing.add(transitionModel);
             }
         }
@@ -311,7 +329,7 @@ public class TaskModel implements Serializable {
     public void setMobileForm(String mobileForm) {
         this.mobileForm = mobileForm;
     }
-    
+
     public Map<String, String> getInParameters() {
         if (inParameters == null) {
             inParameters = new HashMap<>();

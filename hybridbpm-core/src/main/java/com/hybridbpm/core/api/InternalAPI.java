@@ -78,7 +78,7 @@ public class InternalAPI extends AbstractAPI {
     public void finishTask(Task task, Map<String, Object> variables, Map<String, List<File>> files, List<String> fileIdsToDelete) {
         Object caseId = getOrientGraph().getVertex(task.getId()).getEdges(Direction.IN, "ProcessTaskList").iterator().next().getVertex(Direction.OUT).getId();
         try (OObjectDatabaseTx database = getOObjectDatabaseTx()) {
-            task.setStatus(Task.STATUS.FINISHED);
+            task.setStatus(TaskModel.STATUS.FINISHED);
             task.setUpdateDate(new Date());
             task.setFinishDate(new Date());
             task = database.save(task);
@@ -164,7 +164,7 @@ public class InternalAPI extends AbstractAPI {
         task.setTaskName(taskModel.getName());
         task.setProcessModelName(case1.getModelName());
         task.setCaseCode(case1.getCode());
-        task.setStatus(Task.STATUS.FINISHED);
+        task.setStatus(TaskModel.STATUS.FINISHED);
         task.setExecutor(initiator.getUsername());
         task.setInitiator(initiator.getUsername());
         task.setAssigned(Boolean.TRUE);
@@ -178,7 +178,7 @@ public class InternalAPI extends AbstractAPI {
         return task;
     }
 
-    private Task saveTask(Case case1, TaskModel taskModel, Task.STATUS status, User taskUser, int iteration) {
+    private Task saveTask(Case case1, TaskModel taskModel, TaskModel.STATUS status, User taskUser, int iteration) {
         Task task = new Task();
         task.setInitial(false);
         task.setAssigned(Boolean.FALSE);
@@ -232,7 +232,7 @@ public class InternalAPI extends AbstractAPI {
                         actors.add(rawActors.toString());
                     }
                 }
-                task.setStatus(Task.STATUS.TODO);
+                task.setStatus(TaskModel.STATUS.TODO);
                 task.setUpdateDate(new Date());
                 task = database.save(task);
                 task = detach(task);
@@ -279,7 +279,7 @@ public class InternalAPI extends AbstractAPI {
                     List<String> joins = new ArrayList<>();
                     for (TaskModel tm : newTaskModels) {
                         if (tm.getJoinType().equals(TaskModel.GATE_TYPE.EXLUSIVE)) {
-                            Task ti = saveTask(case1, tm, Task.STATUS.CREATED, null, 0);
+                            Task ti = saveTask(case1, tm, TaskModel.STATUS.CREATED, null, 0);
                             tasks.add(ti);
                         } else if (tm.getJoinType().equals(TaskModel.GATE_TYPE.PARALLEL)) {
                             String joinId = saveTaskJoin(caseId, tm.getName(), database);
@@ -324,7 +324,7 @@ public class InternalAPI extends AbstractAPI {
 
                 int transitionsToWait = taskModel.getIncomingTransitionModel().size();
                 if (transitionsToWait == transitionsCome) {
-                    Task ti = saveTask(hCase, taskModel, Task.STATUS.CREATED, null, nextIteration);
+                    Task ti = saveTask(hCase, taskModel, TaskModel.STATUS.CREATED, null, nextIteration);
                     getOObjectDatabaseTx().commit();
                     // publish next activity
                     publishNextExecutor(hCase.getId().toString(), ti, null);
@@ -454,13 +454,13 @@ public class InternalAPI extends AbstractAPI {
         logger.log(Level.INFO, "InternalAPI.publishNextExecutor start {0} {1}", new Object[]{caseId, (task != null ? task.getId() : null)});
         BpmEvent.EXECUTOR executor = null;
         if (task != null) {
-            if (task.getStatus().equals(Task.STATUS.CREATED)) {
+            if (task.getStatus().equals(TaskModel.STATUS.CREATED)) {
                 if (task.getTaskType().equals(TaskModel.TASK_TYPE.AUTOMATIC)) {
                     executor = BpmEvent.EXECUTOR.CONNECTOR;
                 } else if (task.getTaskType().equals(TaskModel.TASK_TYPE.HUMAN)) {
                     executor = BpmEvent.EXECUTOR.ACTOR_RESOLVER;
                 }
-            } else if (task.getStatus().equals(Task.STATUS.FINISHED)) {
+            } else if (task.getStatus().equals(TaskModel.STATUS.FINISHED)) {
                 executor = BpmEvent.EXECUTOR.TRANSITION;
             }
         } else if (joinId != null) {
@@ -512,7 +512,7 @@ public class InternalAPI extends AbstractAPI {
                     if (bpmConnector != null) {
                         bpmConnector.execute();
 
-                        task.setStatus(Task.STATUS.FINISHED);
+                        task.setStatus(TaskModel.STATUS.FINISHED);
                         task = database.save(task);
                         if (!taskModel.getOutParameters().isEmpty()) {
                             variables = getBpmConnectorOutParameters(taskModel.getOutParameters(), scriptEngine, bpmConnector, variables);
@@ -520,7 +520,7 @@ public class InternalAPI extends AbstractAPI {
                         }
                     }
                 } else {
-                    task.setStatus(Task.STATUS.FINISHED);
+                    task.setStatus(TaskModel.STATUS.FINISHED);
                     task = database.save(task);
                 }
                 publishNextExecutor(case1.getId().toString(), task, null);
@@ -644,7 +644,7 @@ public class InternalAPI extends AbstractAPI {
         try (OObjectDatabaseTx database = getOObjectDatabaseTx()) {
             for (String actor : actors) {
                 List<ODocument> counter1 = database.query(new OSQLSynchQuery<ODocument>(
-                        "SELECT COUNT(1) FROM ( SELECT expand(outV('Task') [status= '" + Task.STATUS.TODO + "' ]) FROM ("
+                        "SELECT COUNT(1) FROM ( SELECT expand(outV('Task') [status= '" + TaskModel.STATUS.TODO + "' ]) FROM ("
                         + "SELECT expand(inE('UserTaskList')) FROM User WHERE @rid = ? )) ", 1), actor);
                 Integer count1 = counter1.size() > 0 ? Integer.parseInt(counter1.get(0).field("COUNT").toString()) : 0;
                 result.put(actor, count1);

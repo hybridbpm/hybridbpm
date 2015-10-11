@@ -45,9 +45,9 @@ public class TaskListLayout extends AbstractTableLayout {
     private static final Logger logger = Logger.getLogger(TaskListLayout.class.getSimpleName());
 
     private TabSheet tabSheet;
-    private Task.STATUS status;
+    private TaskModel.STATUS status;
 
-    public TaskListLayout(Task.STATUS status) {
+    public TaskListLayout(TaskModel.STATUS status) {
         super();
         this.status = status;
         btnAdd.setVisible(false);
@@ -101,9 +101,9 @@ public class TaskListLayout extends AbstractTableLayout {
         iTable.removeAllItems();
         List<Task> tasks = new ArrayList<>(0);
 
-        if (Objects.equals(status, Task.STATUS.TODO)) {
+        if (Objects.equals(status, TaskModel.STATUS.TODO)) {
             tasks = HybridbpmUI.getBpmAPI().getMyTasksToDo(HybridbpmUI.getCurrent().getLocale());
-        } else if (Objects.equals(status, Task.STATUS.FINISHED)) {
+        } else if (Objects.equals(status, TaskModel.STATUS.FINISHED)) {
             tasks = HybridbpmUI.getBpmAPI().getMyTasksDone(HybridbpmUI.getCurrent().getLocale());
         }
 
@@ -122,7 +122,7 @@ public class TaskListLayout extends AbstractTableLayout {
             }
         }
         iTable.sort(new Object[]{"updateDate"}, new boolean[]{false});
-        if (Objects.equals(Task.STATUS.TODO, status) && tasks.size() > 0) {
+        if (Objects.equals(TaskModel.STATUS.TODO, status) && tasks.size() > 0) {
             HazelcastServer.sendDashboardNotificationEventIfExists(DashboardNotificationEvent.createViewNotification(HybridbpmUI.getUser().getId().toString(), DashboardConstant.VIEW_URL_TASKS, "" + tasks.size()));
         } else {
             HazelcastServer.sendDashboardNotificationEventIfExists(DashboardNotificationEvent.createRemoveViewNotification(HybridbpmUI.getUser().getId().toString(), DashboardConstant.VIEW_URL_TASKS));

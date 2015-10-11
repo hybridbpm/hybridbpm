@@ -18,23 +18,23 @@
  */
 package com.hybridbpm.core.serializer;
 
-import com.hybridbpm.core.data.bpm.Task;
+import com.hybridbpm.model.TaskModel;
 import com.orientechnologies.orient.core.serialization.serializer.object.OObjectSerializer;
 
 /**
  *
  * @author Marat Gubaidullin
  */
-public class TaskStatusSerializer implements OObjectSerializer<Task.STATUS, String> {
+public class TaskModelStatusSerializer implements OObjectSerializer<TaskModel.STATUS, String> {
 
     @Override
-    public Object serializeFieldValue(Class<?> iClass, Task.STATUS status) {
+    public Object serializeFieldValue(Class<?> iClass, TaskModel.STATUS status) {
         return status.name();
     }
 
     @Override
     public Object unserializeFieldValue(Class<?> iClass, String status) {
-        return Task.STATUS.valueOf(status);
+        return TaskModel.STATUS.valueOf(status);
     }
 
     

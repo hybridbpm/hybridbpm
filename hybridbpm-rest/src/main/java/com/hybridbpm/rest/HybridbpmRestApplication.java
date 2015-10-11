@@ -27,13 +27,14 @@ import javax.ws.rs.core.Application;
  *
  * @author Marat Gubaidullin
  */
-@ApplicationPath("/rest")
+@ApplicationPath(RestConstant.PATH_API)
 public class HybridbpmRestApplication extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
         HashSet<Class<?>> classes = new HashSet<>();
-        classes.add(AuthenticationResource.class);
+        classes.add(AccessResource.class);
+        classes.add(BpmResource.class);
         return classes;
     }
     

@@ -65,7 +65,7 @@ public class CaseTaskListLayout extends AbstractTableLayout {
         iTable.addContainerProperty("taskPriority", TaskModel.TASK_PRIORITY.class, null, "Priority", null, Table.Align.LEFT);
         iTable.addContainerProperty("taskType", TaskModel.TASK_TYPE.class, null, "Type", null, Table.Align.LEFT);
         iTable.addContainerProperty("taskUser", String.class, null, "Task user", null, Table.Align.LEFT);
-        iTable.addContainerProperty("status", Task.STATUS.class, null, "Status", null, Table.Align.LEFT);
+        iTable.addContainerProperty("status", TaskModel.STATUS.class, null, "Status", null, Table.Align.LEFT);
         iTable.addContainerProperty("taskTitle", String.class, null, "Task", null, Table.Align.LEFT);
         iTable.setColumnExpandRatio("taskTitle", 1f);
         iTable.addGeneratedColumn("taskTitle", new OpenTaskColumnGenerator(this));

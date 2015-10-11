@@ -16,24 +16,22 @@
  * the License.
  *
  */
-package com.hybridbpm.core.data.bpm;
+package com.hybridbpm.model.mobile;
 
 import com.hybridbpm.model.TaskModel.ACTOR_OPTION;
 import com.hybridbpm.model.TaskModel.STATUS;
 import com.hybridbpm.model.TaskModel.TASK_PRIORITY;
 import com.hybridbpm.model.TaskModel.TASK_TYPE;
 import java.util.Date;
-import javax.persistence.Id;
 
 /**
  *
  * @author Marat Gubaidullin
  */
-public class Task {
+public class MobileTask {
 
-    @Id
-    protected Object id;
-    protected Date updateDate;
+    private String id;
+    private Date updateDate;
     private String taskName;
     private String description;
     private int iteration;
@@ -55,15 +53,19 @@ public class Task {
     private Boolean initial;
     private Boolean assigned;
     private Boolean question;
-    transient private String caseTitle;
+    private String caseTitle;
 
-    public Task() {
+    public MobileTask() {
     }
     
-    public Object getId() {
+    public String getId() {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public Date getUpdateDate() {
         return updateDate;
     }

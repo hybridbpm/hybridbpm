@@ -19,7 +19,6 @@
 package com.hybridbpm.model;
 
 import java.io.Serializable;
-import java.util.Locale;
 
 /**
  *

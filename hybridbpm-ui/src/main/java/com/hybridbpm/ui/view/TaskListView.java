@@ -20,6 +20,7 @@ package com.hybridbpm.ui.view;
 
 import com.hybridbpm.core.data.bpm.Task;
 import com.hybridbpm.core.util.DashboardConstant;
+import com.hybridbpm.model.TaskModel;
 import com.hybridbpm.ui.component.AbstractTableLayout;
 import com.hybridbpm.ui.component.bpm.TaskListLayout;
 import com.vaadin.annotations.DesignRoot;
@@ -29,7 +30,6 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
@@ -46,8 +46,8 @@ public final class TaskListView extends AbstractView implements View, Button.Cli
     public VerticalLayout panelLayout;
     public TabSheet tabSheet;
 
-    private final TaskListLayout todoListLayout = new TaskListLayout(Task.STATUS.TODO);
-    private final TaskListLayout doneListLayout = new TaskListLayout(Task.STATUS.FINISHED);
+    private final TaskListLayout todoListLayout = new TaskListLayout(TaskModel.STATUS.TODO);
+    private final TaskListLayout doneListLayout = new TaskListLayout(TaskModel.STATUS.FINISHED);
 
     public TaskListView() {
         Design.read(this);
