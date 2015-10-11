@@ -34,7 +34,10 @@ import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.orientechnologies.orient.object.db.OObjectDatabaseTx;
 import com.orientechnologies.orient.object.iterator.OObjectIteratorClass;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,7 +115,7 @@ public class AccessAPI extends AbstractAPI {
             Map<String, Object> params = new HashMap<>();
             params.put("param", "%" + (name != null ? name.toLowerCase() : "") + "%");
             List<User> list = database.query(
-                    new OSQLSynchQuery<User>("SELECT * FROM User WHERE  username.toLowerCase() LIKE :param OR firstName.toLowerCase() LIKE :param OR lastName.toLowerCase() LIKE :param ORDER BY username "),
+                    new OSQLSynchQuery<>("SELECT * FROM User WHERE  username.toLowerCase() LIKE :param OR firstName.toLowerCase() LIKE :param OR lastName.toLowerCase() LIKE :param ORDER BY username "),
                     params);
             return detachList(list);
         }
@@ -120,7 +123,14 @@ public class AccessAPI extends AbstractAPI {
 
     public User getUserByUserName(String userName) {
         try (OObjectDatabaseTx database = getOObjectDatabaseTx()) {
-            List<User> list = database.query(new OSQLSynchQuery<User>("SELECT * FROM User WHERE  username = ? "), userName);
+            List<User> list = database.query(new OSQLSynchQuery<>("SELECT * FROM User WHERE  username = ? "), userName);
+            return (list != null && !list.isEmpty()) ? detach(list.get(0)) : null;
+        }
+    }
+
+    public User getUserByUserToken(String token) {
+        try (OObjectDatabaseTx database = getOObjectDatabaseTx()) {
+            List<User> list = database.query(new OSQLSynchQuery<>("SELECT * FROM User WHERE  token = ? "), token);
             return (list != null && !list.isEmpty()) ? detach(list.get(0)) : null;
         }
     }
@@ -179,7 +189,7 @@ public class AccessAPI extends AbstractAPI {
     public boolean isDeveloper() {
         return hasRole(Role.DEVELOPER);
     }
-    
+
     public boolean isManager() {
         return hasRole(Role.MANAGER);
     }
@@ -217,12 +227,17 @@ public class AccessAPI extends AbstractAPI {
             return detach(user);
         }
     }
-    
+
     public void setUserToken(User user, String token) throws RuntimeException {
+        String period = SystemAPI.get(null, null).getSystemParameter(User.TOKEN_EXPIRE_PERIOD).getValue();
         try (ODatabaseDocumentTx database = getODatabaseDocumentTx()) {
+            LocalDateTime tokenExpireDate = LocalDateTime.now();
+            tokenExpireDate = tokenExpireDate.plusDays(Long.parseLong(period));
+
             database.command(
                     new OCommandSQL(
-                            "UPDATE User SET token = ? WHERE @rid = ?")).execute(user.getId());
+                            "UPDATE User SET token = ?, tokenExpireDate = ?  WHERE @rid = ?"))
+                    .execute(token, HybridbpmCoreUtil.toDate(tokenExpireDate), user.getId());
         }
     }
 

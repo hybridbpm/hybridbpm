@@ -18,13 +18,16 @@
  */
 package com.hybridbpm.server;
 
+import com.hybridbpm.rest.AccessFilter;
 import com.hybridbpm.core.HybridbpmCore;
 import com.hybridbpm.rest.HybridbpmRestApplication;
+import com.hybridbpm.rest.RestConstant;
 import com.vaadin.server.VaadinServlet;
 import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.PathHandler;
 import io.undertow.server.handlers.resource.ClassPathResourceManager;
+import io.undertow.servlet.ServletExtension;
 import static io.undertow.servlet.Servlets.defaultContainer;
 import static io.undertow.servlet.Servlets.deployment;
 import io.undertow.servlet.api.DeploymentInfo;
@@ -34,7 +37,10 @@ import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
+import org.jboss.resteasy.spi.ResteasyDeployment;
 
 /**
  *
@@ -64,43 +70,67 @@ public class HybridbpmServer {
         }));
         try {
             hybridbpmServer.start();
-
-            ServletInfo servletInfo = new ServletInfo("VaadinServlet", VaadinServlet.class)
-                    .setAsyncSupported(true)
-                    .setLoadOnStartup(1)
-                    .addInitParam("ui", "com.hybridbpm.ui.HybridbpmUI").addInitParam("widgetset", "com.hybridbpm.ui.HybridbpmWidgetSet")
-                    .addMapping("/*").addMapping("/VAADIN");
-
-            DeploymentInfo servletBuilder = deployment()
-                    .setClassLoader(HybridbpmServer.class.getClassLoader())
-                    .setContextPath(PATH)
-                    .setDeploymentName("hybridbpm.war")
-                    .setDisplayName("HYBRIDBPM")
-                    .setResourceManager(new ClassPathResourceManager(HybridbpmServer.class.getClassLoader()))
-                    .addServlets(servletInfo)
-                    .addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, new WebSocketDeploymentInfo());
-
-            DeploymentManager manager = defaultContainer().addDeployment(servletBuilder);
-            manager.deploy();
-
-            PathHandler path = Handlers.path(Handlers.redirect(PATH)).addPrefixPath(PATH, manager.start());
-
-            Undertow.Builder builder = Undertow.builder().addHttpListener(8080, "0.0.0.0").setHandler(path);
-
-            undertow = builder.build();
-            undertow.start();
-            logger.info("HybridbpmServer UI started");
-
-            Undertow.Builder builderJaxrs = Undertow.builder().addHttpListener(8081, "0.0.0.0");
-            undertowJaxrsServer = new UndertowJaxrsServer().start(builderJaxrs);
-            undertowJaxrsServer.deploy(HybridbpmRestApplication.class);
-
-            logger.info("HybridbpmServer REST started");
-
+            startUndertow();
+            startUndertowJaxrsServer();
             logger.info("HybridbpmServer started");
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
+    }
+
+    private static void startUndertow() throws ServletException {
+        ServletInfo servletInfo = new ServletInfo(VaadinServlet.class.getName(), VaadinServlet.class)
+                .setAsyncSupported(true)
+                .setLoadOnStartup(1)
+                .addInitParam("ui", "com.hybridbpm.ui.HybridbpmUI").addInitParam("widgetset", "com.hybridbpm.ui.HybridbpmWidgetSet")
+                .addMapping("/*").addMapping("/VAADIN");
+
+        DeploymentInfo deploymentInfo = deployment()
+                .setClassLoader(HybridbpmServer.class.getClassLoader())
+                .setContextPath(PATH)
+                .setDeploymentName("hybridbpm.war")
+                .setDisplayName("HYBRIDBPM")
+                .setResourceManager(new ClassPathResourceManager(HybridbpmServer.class.getClassLoader()))
+                .addServlets(servletInfo)
+                .addServletContextAttribute(WebSocketDeploymentInfo.ATTRIBUTE_NAME, new WebSocketDeploymentInfo());
+
+        DeploymentManager manager = defaultContainer().addDeployment(deploymentInfo);
+        manager.deploy();
+
+        PathHandler path = Handlers.path(Handlers.redirect(PATH)).addPrefixPath(PATH, manager.start());
+
+        Undertow.Builder builder = Undertow.builder().addHttpListener(8080, "0.0.0.0").setHandler(path);
+
+        undertow = builder.build();
+        undertow.start();
+        logger.info("HybridbpmServer UI started");
+    }
+
+    private static void startUndertowJaxrsServer() {
+        Undertow.Builder builderJaxrs = Undertow.builder().addHttpListener(8081, "0.0.0.0");
+        undertowJaxrsServer = new UndertowJaxrsServer().start(builderJaxrs);
+
+        ServletExtension servletExtension = (DeploymentInfo deploymentInfo, ServletContext servletContext) -> {
+            servletContext
+                    .addFilter("MyFilter1", AccessFilter.class)
+                    .addMappingForServletNames(null, false, "ResteasyServlet");
+            
+            servletContext
+                    .addFilter("MyFilter2", AccessFilter.class)
+                    .addMappingForUrlPatterns(null, false, "/");
+        };
+
+        ResteasyDeployment resteasyDeployment = new ResteasyDeployment();
+        resteasyDeployment.setApplicationClass(HybridbpmRestApplication.class.getName());
+        DeploymentInfo deploymentInfo = undertowJaxrsServer.undertowDeployment(resteasyDeployment);
+        deploymentInfo.setClassLoader(Thread.currentThread().getContextClassLoader());
+        deploymentInfo.setContextPath(RestConstant.PATH_API);
+        deploymentInfo.setDeploymentName("HybridbpmRestApplication");
+        deploymentInfo.addServletExtension(servletExtension);
+        undertowJaxrsServer.deploy(deploymentInfo);
+
+        logger.info("HybridbpmServer REST started");
+
     }
 
 }
