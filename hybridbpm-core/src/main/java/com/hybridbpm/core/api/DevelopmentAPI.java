@@ -165,10 +165,13 @@ public class DevelopmentAPI extends AbstractAPI {
     public Module saveModule(Module module) throws RuntimeException {
         try {
             String moduleName = HybridbpmCoreUtil.checkClassName(module.getName());
-            if (getModuleByName(moduleName) != null){
+            if (module.getId() == null && getModuleByName(moduleName) != null) {
                 throw new RuntimeException("Module name should be unique!");
             }
             module.setName(moduleName);
+            if (module.getTitle().getValue() == null || module.getTitle().getValue().isEmpty()){
+                module.getTitle().addValue(Translated.DEFAULT_LOCALE, moduleName);
+            }
             switch (module.getType()) {
                 case FORM:
                     return saveFormModule(module);

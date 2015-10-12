@@ -30,21 +30,21 @@ import java.util.Map;
 public class Translated implements Serializable {
     
     private Map<Locale, String> values;
-    private Locale defaultLocale = Locale.US;
+    public static final Locale DEFAULT_LOCALE = Locale.US;
     
     public Translated() {
     }
     
     public Translated(String defaultValue) {
-        this.addValue(defaultLocale, defaultValue);
+        this.addValue(DEFAULT_LOCALE, defaultValue);
     }
     
     public String getValue(Locale locale) {
-        return values.containsKey(locale) ? values.get(locale) : values.get(defaultLocale);
+        return values.containsKey(locale) ? values.get(locale) : values.get(DEFAULT_LOCALE);
     }
     
     public String getValue() {
-        return getValues().get(defaultLocale);
+        return getValues().get(DEFAULT_LOCALE);
     }
     
     public Map<Locale, String> getValues() {
@@ -56,24 +56,20 @@ public class Translated implements Serializable {
     
     public void setValues(Map<Locale, String> value) {
         this.values = value;
-        if (this.values != null && !this.values.containsKey(defaultLocale)) {
-            this.values.put(defaultLocale, value.values().iterator().next());
+        if (this.values != null && !this.values.containsKey(DEFAULT_LOCALE)) {
+            this.values.put(DEFAULT_LOCALE, value.values().iterator().next());
         }
     }
     
     public void addValue(Locale locale, String val) {
         getValues().put(locale, val);
-        if (!getValues().containsKey(defaultLocale)) {
-            getValues().put(defaultLocale, val);
+        if (!getValues().containsKey(DEFAULT_LOCALE)) {
+            getValues().put(DEFAULT_LOCALE, val);
         }
     }
     
     public Locale getDefaultLocale() {
-        return defaultLocale;
-    }
-    
-    public void setDefaultLocale(Locale defaultLocale) {
-        this.defaultLocale = defaultLocale;
+        return DEFAULT_LOCALE;
     }
     
 }

@@ -28,6 +28,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
+import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.FieldEvents;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.combobox.FilteringMode;
@@ -126,20 +127,26 @@ public class ModuleLayout extends VerticalLayout {
         binder.bind(templateComboBox, "templateName");
         binder.bind(processComboBox, "processName");
         binder.setBuffered(true);
-        name.setEnabled(newModule); // do not edit name
         if (newModule){
+            name.setEnabled(true); // do not edit name
             name.addTextChangeListener((FieldEvents.TextChangeEvent event) -> {
                 name.setValue(HybridbpmCoreUtil.checkClassName(event.getText()));
             });
+        } else {
+            moduleTypeOptionGroup.setEnabled(false); // do not edit type
+            name.setEnabled(false); // do not edit name
+            moduleTypeOptionGroup.setEnabled(false); // do not edit name
+            subTypeOptionGroup.setEnabled(false); // do not edit name
+            processComboBox.setEnabled(false); // do not edit name
         }
-        moduleTypeOptionGroup.setEnabled(newModule); // do not edit type
+        
     }
 
     public void save() {
         try {
             binder.commit();
             HybridbpmUI.getDevelopmentAPI().saveModule(module);
-        } catch (Exception e) {
+        } catch (FieldGroup.CommitException | RuntimeException e) {
             throw new RuntimeException(e);
         }
     }
