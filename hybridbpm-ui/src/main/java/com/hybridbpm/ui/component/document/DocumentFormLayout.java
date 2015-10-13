@@ -21,6 +21,7 @@ package com.hybridbpm.ui.component.document;
 import com.hybridbpm.core.data.document.Document;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.TranslatedField;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup;
@@ -40,7 +41,6 @@ import com.vaadin.ui.declarative.Design;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.Objects;
@@ -57,13 +57,13 @@ public class DocumentFormLayout extends VerticalLayout {
 
     private Document document;
 
-    private TextField nameTextField;
-    private TranslatedField descriptionField;
-    private TextField creatorTextField;
-    private TextField mimeTextField;
-    private TextField sizeTextField;
-    private PopupDateField createTextField;
-    private PopupDateField updateTextField;
+    private TextField textFieldName;
+    private TranslatedField fieldDescription;
+    private TextField textFieldCreator;
+    private TextField textFieldMime;
+    private TextField textFieldSize;
+    private PopupDateField dateFieldCreate;
+    private PopupDateField dateFieldUpdate;
 
     private HorizontalLayout fileLayout;
     private Button btnDownload;
@@ -85,15 +85,23 @@ public class DocumentFormLayout extends VerticalLayout {
     public void initUI(Document document) {
         this.document = document;
         Design.read(this);
+        fileLayout.setCaption(Translate.getMessage("fileLayoutCaption"));
+        textFieldName.setCaption(Translate.getMessage("textFieldName"));
+        fieldDescription.setCaption(Translate.getMessage("fieldDescription"));
+        textFieldCreator.setCaption(Translate.getMessage("textFieldCreator"));
+        textFieldMime.setCaption(Translate.getMessage("textFieldMime"));
+        textFieldSize.setCaption(Translate.getMessage("textFieldSize"));
+        dateFieldCreate.setCaption(Translate.getMessage("dateFieldCreate"));
+        dateFieldUpdate.setCaption(Translate.getMessage("dateFieldUpdate"));
 
         binder.setItemDataSource(this.document);
-        binder.bind(nameTextField, "name");
-        binder.bind(descriptionField, "description");
-        binder.bind(creatorTextField, "creator");
-        binder.bind(createTextField, "createDate");
-        binder.bind(updateTextField, "updateDate");
-        binder.bind(mimeTextField, "mime");
-        binder.bind(sizeTextField, "size");
+        binder.bind(textFieldName, "name");
+        binder.bind(fieldDescription, "description");
+        binder.bind(textFieldCreator, "creator");
+        binder.bind(dateFieldCreate, "createDate");
+        binder.bind(dateFieldUpdate, "updateDate");
+        binder.bind(textFieldMime, "mime");
+        binder.bind(textFieldSize, "size");
         binder.setBuffered(true); // important
 
         fileUpload.setImmediate(true);
@@ -107,11 +115,11 @@ public class DocumentFormLayout extends VerticalLayout {
     private void checkVisibility() {
         if (Objects.equals(Document.TYPE.FILE, document.getType())) {
             fileLayout.setVisible(true);
-            nameTextField.setVisible(false);
-            mimeTextField.setVisible(true);
-            sizeTextField.setVisible(true);
-            mimeTextField.setReadOnly(true);
-            sizeTextField.setReadOnly(true);
+            textFieldName.setVisible(false);
+            textFieldMime.setVisible(true);
+            textFieldSize.setVisible(true);
+            textFieldMime.setReadOnly(true);
+            textFieldSize.setReadOnly(true);
             if (document.getSize() == 0) {
                 btnDownload.setVisible(false);
                 fileUpload.setVisible(true);
@@ -122,34 +130,34 @@ public class DocumentFormLayout extends VerticalLayout {
             }
         } else if (Objects.equals(Document.TYPE.FOLDER, document.getType())) {
             fileLayout.setVisible(false);
-            mimeTextField.setVisible(false);
-            sizeTextField.setVisible(false);
+            textFieldMime.setVisible(false);
+            textFieldSize.setVisible(false);
             if (this.document.getId() != null) {
-                nameTextField.setReadOnly(true);
+                textFieldName.setReadOnly(true);
             } else {
-                nameTextField.setReadOnly(false);
+                textFieldName.setReadOnly(false);
             }
         }
 
         if (this.document.getId() != null) {
-            creatorTextField.setReadOnly(true);
-            createTextField.setReadOnly(true);
-            updateTextField.setReadOnly(true);
+            textFieldCreator.setReadOnly(true);
+            dateFieldCreate.setReadOnly(true);
+            dateFieldUpdate.setReadOnly(true);
 
-            creatorTextField.setVisible(true);
-            createTextField.setVisible(true);
-            updateTextField.setVisible(true);
+            textFieldCreator.setVisible(true);
+            dateFieldCreate.setVisible(true);
+            dateFieldUpdate.setVisible(true);
         } else {
-            creatorTextField.setVisible(false);
-            createTextField.setVisible(false);
-            updateTextField.setVisible(false);
+            textFieldCreator.setVisible(false);
+            dateFieldCreate.setVisible(false);
+            dateFieldUpdate.setVisible(false);
         }
     }
 
     public void save() {
         try {
             binder.commit();
-            document =binder.getItemDataSource().getBean();
+            document = binder.getItemDataSource().getBean();
             document = HybridbpmUI.getDocumentAPI().saveDocument(document);
             binder.setItemDataSource(document);
             checkVisibility();
@@ -178,9 +186,9 @@ public class DocumentFormLayout extends VerticalLayout {
                 binder.commit();
                 document = binder.getItemDataSource().getBean();
                 document.setUpdateDate(new Date());
-                document.setName(document.getId() != null ? document.getName(): filename);
+                document.setName(document.getId() != null ? document.getName() : filename);
                 document.setBody(image);
-                document.setMime(document.getId() != null ? document.getMime(): mimeType);
+                document.setMime(document.getId() != null ? document.getMime() : mimeType);
                 document.setSize(image.length);
                 binder.setItemDataSource(document);
                 checkVisibility();
@@ -193,13 +201,7 @@ public class DocumentFormLayout extends VerticalLayout {
     class OnDemandStreamResource extends StreamResource {
 
         public OnDemandStreamResource() {
-            super(new StreamSource() {
-
-                @Override
-                public InputStream getStream() {
-                    return new ByteArrayInputStream(new byte[1]);
-                }
-            }, "");
+            super(() -> new ByteArrayInputStream(new byte[1]), "");
         }
 
     }
@@ -213,23 +215,13 @@ public class DocumentFormLayout extends VerticalLayout {
         @Override
         public boolean handleConnectorRequest(VaadinRequest request, VaadinResponse response, String path) throws IOException {
             if (image == null && document.getId() != null) {
-                StreamResource resource = new StreamResource(new StreamSource() {
-
-                    @Override
-                    public InputStream getStream() {
-                        Document doc = HybridbpmUI.getDocumentAPI().getDocumentById(document.getId(), true);
-                        return new ByteArrayInputStream(doc.getBody());
-                    }
-                }, nameTextField.getValue());
+                StreamResource resource = new StreamResource(() -> {
+                    Document doc = HybridbpmUI.getDocumentAPI().getDocumentById(document.getId(), true);
+                    return new ByteArrayInputStream(doc.getBody());
+                }, textFieldName.getValue());
                 this.setResource("dl", resource);
             } else {
-                StreamResource resource = new StreamResource(new StreamSource() {
-
-                    @Override
-                    public InputStream getStream() {
-                        return new ByteArrayInputStream(image);
-                    }
-                }, nameTextField.getValue());
+                StreamResource resource = new StreamResource(() -> new ByteArrayInputStream(image), textFieldName.getValue());
                 this.setResource("dl", resource);
             }
 

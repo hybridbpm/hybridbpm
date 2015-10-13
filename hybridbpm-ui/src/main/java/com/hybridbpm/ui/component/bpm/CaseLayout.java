@@ -20,6 +20,7 @@ package com.hybridbpm.ui.component.bpm;
 
 import com.hybridbpm.core.data.bpm.Case;
 import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
 import com.vaadin.ui.Alignment;
@@ -135,7 +136,7 @@ public class CaseLayout extends VerticalLayout implements Button.ClickListener {
     @Override
     public void buttonClick(Button.ClickEvent event) {
         if (event.getButton().equals(btnDelete)) {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete case and all data?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete case and all data?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {
@@ -146,7 +147,7 @@ public class CaseLayout extends VerticalLayout implements Button.ClickListener {
                 }
             });
         } else if (event.getButton().equals(btnTerminate)) {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Terminate case and all tasks?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Terminate case and all tasks?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {

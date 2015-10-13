@@ -21,6 +21,7 @@ package com.hybridbpm.ui.component.document;
 import com.hybridbpm.core.data.access.Permission;
 import com.hybridbpm.core.data.document.Document;
 import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
@@ -29,6 +30,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -46,11 +48,17 @@ public class DocumentLayout extends VerticalLayout implements Button.ClickListen
     private DocumentHistoryLayout documentHistoryLayout;
     private DocumentAccessLayout documentAccessLayout;
     private Button btnSave;
-    private Button btnPermission;
+    private Button btnAddPermission;
     private HorizontalLayout buttonBar;
 
     public DocumentLayout(String documentId) {
         this.documentId = documentId;
+        tabSheet.getTab(documentFormLayout).setCaption(Translate.getMessage("documentFormCaption"));
+        tabSheet.getTab(documentHistoryLayout).setCaption(Translate.getMessage("documentHistoryCaption"));
+        tabSheet.getTab(documentAccessLayout).setCaption(Translate.getMessage("documentAccessCaption"));
+        btnAddPermission.setCaption(Translate.getMessage("btnAddPermission"));
+        btnSave.setCaption(Translate.getMessage("btnSave"));
+        
         document = HybridbpmUI.getDocumentAPI().getDocumentById(documentId, false);
         setCaption(document.getName());
         Design.read(this);
@@ -60,9 +68,9 @@ public class DocumentLayout extends VerticalLayout implements Button.ClickListen
         Responsive.makeResponsive(this);
         btnSave.setIcon(FontAwesome.SAVE);
         btnSave.addClickListener(this);
-        btnPermission.setIcon(FontAwesome.PLUS);
-        btnPermission.addClickListener(this);
-        btnPermission.setVisible(false);
+        btnAddPermission.setIcon(FontAwesome.PLUS);
+        btnAddPermission.addClickListener(this);
+        btnAddPermission.setVisible(false);
         tabSheet.addSelectedTabChangeListener(this);
         if (Objects.equals(Document.TYPE.FOLDER, document.getType())) {
             tabSheet.getTab(documentFormLayout).setCaption("Folder");
@@ -86,7 +94,7 @@ public class DocumentLayout extends VerticalLayout implements Button.ClickListen
             documentFormLayout.save();
             documentHistoryLayout.refreshTable();
         }
-        if (event.getButton().equals(btnPermission)) {
+        if (event.getButton().equals(btnAddPermission)) {
             documentAccessLayout.addPermission(document, null);
         }
     }
@@ -98,9 +106,9 @@ public class DocumentLayout extends VerticalLayout implements Button.ClickListen
     @Override
     public void selectedTabChange(TabSheet.SelectedTabChangeEvent event) {
         if (event.getTabSheet().getSelectedTab().equals(documentAccessLayout)){
-            btnPermission.setVisible(true);
+            btnAddPermission.setVisible(true);
         } else {
-            btnPermission.setVisible(false);
+            btnAddPermission.setVisible(false);
         }
     }
 

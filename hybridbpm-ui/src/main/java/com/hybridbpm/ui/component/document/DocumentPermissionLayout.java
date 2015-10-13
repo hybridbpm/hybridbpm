@@ -23,6 +23,7 @@ import com.hybridbpm.core.data.access.Role;
 import com.hybridbpm.core.data.document.Document;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.PermissionsField;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -40,29 +41,32 @@ public final class DocumentPermissionLayout extends VerticalLayout {
 
     public static final String NAME = "NAME";
 
-    private Document document;
+    private final Document document;
     private PermissionsField permissionsField;
-    private ComboBox roleComboBox;
+    private ComboBox comboBoxRole;
     private final BeanFieldGroup<Permission> binder = new BeanFieldGroup<>(Permission.class);
 
     public DocumentPermissionLayout(Document document, Permission permission) {
         Design.read(this);
+        comboBoxRole.setCaption(Translate.getMessage("comboBoxRole"));
+        permissionsField.setCaption(Translate.getMessage("permissionsField"));
+        
         this.document = document;
         permission = permission == null ? new Permission() : permission;
         
         permissionsField.setPermissionsClass(Document.class);
-        roleComboBox.addContainerProperty(NAME, String.class, null);
-        roleComboBox.setItemCaptionMode(AbstractSelect.ItemCaptionMode.PROPERTY);
-        roleComboBox.setItemCaptionPropertyId(NAME);
+        comboBoxRole.addContainerProperty(NAME, String.class, null);
+        comboBoxRole.setItemCaptionMode(AbstractSelect.ItemCaptionMode.PROPERTY);
+        comboBoxRole.setItemCaptionPropertyId(NAME);
         for (Role instance : HybridbpmUI.getAccessAPI().getAllRoles()) {
-            Item item = roleComboBox.addItem(instance);
+            Item item = comboBoxRole.addItem(instance);
             item.getItemProperty(NAME).setValue(instance.getName());
         }
-        roleComboBox.setNullSelectionAllowed(false);
+        comboBoxRole.setNullSelectionAllowed(false);
         
         binder.setItemDataSource(permission);
         binder.bind(permissionsField, "permissions");
-        binder.bind(roleComboBox, "out");
+        binder.bind(comboBoxRole, "out");
         binder.setBuffered(true);
 
         

@@ -24,6 +24,7 @@ import com.hybridbpm.ui.component.AbstractTreeTableLayout;
 import com.hybridbpm.ui.component.ConfigureWindow;
 import com.hybridbpm.ui.component.TableButton;
 import com.hybridbpm.ui.component.TableButtonBar;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.data.Item;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Button;
@@ -121,7 +122,7 @@ public class SystemParametersLayout extends AbstractTreeTableLayout {
     }
 
     public void deleteParameterWindow(final Parameter pi) {
-        ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete parameter?", "OK", "Cancel", new ConfirmDialog.Listener() {
+        ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete parameter?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
             @Override
             public void onClose(ConfirmDialog dialog) {

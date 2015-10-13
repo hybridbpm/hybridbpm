@@ -30,6 +30,7 @@ import com.hybridbpm.ui.component.document.DocumentBreadcrumbButton;
 import com.hybridbpm.ui.component.document.DocumentFormLayout;
 import com.hybridbpm.ui.component.document.DocumentLayout;
 import com.hybridbpm.ui.component.document.DocumentColumnGenerator;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.navigator.View;
@@ -60,7 +61,7 @@ import org.vaadin.dialogs.ConfirmDialog;
 public final class DocumentView extends AbstractView implements View, Button.ClickListener, Window.CloseListener, TabSheet.SelectedTabChangeListener {
 
     public static final String VIEW_URL = DashboardConstant.VIEW_URL_DOCUMENT;
-    public static final String TITLE = "Documents";
+    public static final String TITLE = Translate.getMessage("titleDocuments");
     public static final String ICON = FontAwesome.FILES_O.name();
     public static final Integer ORDER = Integer.MAX_VALUE - 1;
 
@@ -68,7 +69,7 @@ public final class DocumentView extends AbstractView implements View, Button.Cli
     private TabSheet tabSheet;
     private VerticalLayout documentsLayout;
     private HorizontalLayout breadcrumbs;
-    private TextField searchTextField;
+    private TextField textFieldSearch;
     private Button btnSearch;
     private Button btnAddFolder;
     private Button btnAddFile;
@@ -79,6 +80,13 @@ public final class DocumentView extends AbstractView implements View, Button.Cli
 
     public DocumentView() {
         Design.read(this);
+        tabSheet.getTab(documentsLayout).setCaption(Translate.getMessage("Documents"));
+        btnSearch.setCaption(Translate.getMessage("btnSearch"));
+        btnRefresh.setCaption(Translate.getMessage("btnRefresh"));
+        btnAddFile.setCaption(Translate.getMessage("btnAddFile"));
+        btnAddFolder.setCaption(Translate.getMessage("btnAddFolder"));
+        textFieldSearch.setCaption(Translate.getMessage("textFieldSearch"));
+        
         Responsive.makeResponsive(panelLayout);
         btnAddFolder.setIcon(FontAwesome.FOLDER_O);
         btnAddFolder.addClickListener(this);
@@ -88,18 +96,18 @@ public final class DocumentView extends AbstractView implements View, Button.Cli
         btnRefresh.setIcon(FontAwesome.REFRESH);
         btnRefresh.addClickListener(this);
 
-        searchTextField.setIcon(FontAwesome.SEARCH);
+        textFieldSearch.setIcon(FontAwesome.SEARCH);
 
         documentsLayout.setMargin(new MarginInfo(true, false, false, false));
         documentsLayout.setExpandRatio(documentTable, 1f);
 
-        documentTable.addContainerProperty("name", String.class, null, "Name", null, Table.Align.LEFT);
+        documentTable.addContainerProperty("name", String.class, null, Translate.getMessage("tableDocumentsName"), null, Table.Align.LEFT);
         documentTable.setColumnExpandRatio("name", 1f);
-        documentTable.addContainerProperty("description", String.class, null, "Title", null, Table.Align.LEFT);
-        documentTable.addContainerProperty("creator", String.class, null, "Creator", null, Table.Align.LEFT);
-        documentTable.addContainerProperty("createDate", Date.class, null, "Create Date", null, Table.Align.LEFT);
-        documentTable.addContainerProperty("updateDate", Date.class, null, "Update Date", null, Table.Align.LEFT);
-        documentTable.addContainerProperty("actions", TableButtonBar.class, null, "Actions", null, Table.Align.LEFT);
+        documentTable.addContainerProperty("description", String.class, null, Translate.getMessage("tableDocumentsTitle"), null, Table.Align.LEFT);
+        documentTable.addContainerProperty("creator", String.class, null, Translate.getMessage("tableDocumentsCreator"), null, Table.Align.LEFT);
+        documentTable.addContainerProperty("createDate", Date.class, null, Translate.getMessage("tableDocumentsCreateDate"), null, Table.Align.LEFT);
+        documentTable.addContainerProperty("updateDate", Date.class, null, Translate.getMessage("tableDocumentsUpdateDate"), null, Table.Align.LEFT);
+        documentTable.addContainerProperty("actions", TableButtonBar.class, null, Translate.getMessage("tableDocumentsActions"), null, Table.Align.LEFT);
         documentTable.setColumnWidth("createDate", 150);
         documentTable.setColumnWidth("updateDate", 150);
         documentTable.setColumnWidth("actions", 55);
@@ -199,16 +207,16 @@ public final class DocumentView extends AbstractView implements View, Button.Cli
             Document document = ((TableButton<Document>) event.getButton()).getCustomData();
             openDocumentTab(document.getId().toString());
         } else if (event.getButton() instanceof TableButton && ((TableButton) event.getButton()).getType().equals(TableButton.TYPE.DELETE)) {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete file/folder?", "OK", "Cancel", new ConfirmDialog.Listener() {
-
-                @Override
-                public void onClose(ConfirmDialog dialog) {
-                    if (dialog.isConfirmed()) {
-                        Document document = ((TableButton<Document>) event.getButton()).getCustomData();
-                        HybridbpmUI.getDocumentAPI().removeDocument(document.getId().toString());
-                        documentTable.removeItem(document);
-                    }
-                }
+            ConfirmDialog.show(UI.getCurrent(), 
+                    Translate.getMessage("windowTitleConfirm"), 
+                    Translate.getMessage("deleteFileQuestion"), 
+                    Translate.getMessage("btnOK"), 
+                    Translate.getMessage("btnCancel"), (ConfirmDialog dialog) -> {
+                        if (dialog.isConfirmed()) {
+                            Document document = ((TableButton<Document>) event.getButton()).getCustomData();
+                            HybridbpmUI.getDocumentAPI().removeDocument(document.getId().toString());
+                            documentTable.removeItem(document);
+                        }
             });
         }
     }
@@ -255,7 +263,7 @@ public final class DocumentView extends AbstractView implements View, Button.Cli
     public void addFolder() {
         final DocumentFormLayout documentFormLayout = new DocumentFormLayout();
         documentFormLayout.initUI(Document.createFolder(parent));
-        final ConfigureWindow configureWindow = new ConfigureWindow(documentFormLayout, "New folder");
+        final ConfigureWindow configureWindow = new ConfigureWindow(documentFormLayout, Translate.getMessage("windowNewFolder"));
         Button.ClickListener clickListener = new Button.ClickListener() {
 
             @Override
@@ -276,7 +284,7 @@ public final class DocumentView extends AbstractView implements View, Button.Cli
     public void addFile() {
         final DocumentFormLayout documentFormLayout = new DocumentFormLayout();
         documentFormLayout.initUI(Document.createFile(parent));
-        final ConfigureWindow configureWindow = new ConfigureWindow(documentFormLayout, "New file");
+        final ConfigureWindow configureWindow = new ConfigureWindow(documentFormLayout, Translate.getMessage("windowNewFile"));
         Button.ClickListener clickListener = new Button.ClickListener() {
 
             @Override

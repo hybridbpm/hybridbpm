@@ -21,14 +21,13 @@ package com.hybridbpm.ui.view;
 import com.hybridbpm.core.data.dashboard.TabDefinition;
 import com.hybridbpm.core.data.dashboard.ViewDefinition;
 import com.hybridbpm.ui.HybridbpmUI;
-import com.hybridbpm.ui.component.AbstractTableLayout;
 import com.hybridbpm.ui.component.dashboard.ViewManager;
 import com.hybridbpm.ui.component.dashboard.tab.DashboardTab;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
-import com.vaadin.server.Page;
 import com.vaadin.server.Responsive;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Button;
@@ -176,7 +175,7 @@ public final class DashboardView extends AbstractView implements View, Button.Cl
         if (tabContent instanceof DashboardTab) {
             final DashboardTab dashboardTab = (DashboardTab) tabContent;
 
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete tab?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete tab?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {

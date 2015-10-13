@@ -32,6 +32,7 @@ import com.hybridbpm.ui.component.chart.AbstractChart;
 import com.hybridbpm.core.data.chart.DiagrammePreference;
 import com.hybridbpm.ui.component.chart.util.DiagrammeChartType;
 import static com.hybridbpm.ui.component.chart.util.DiagrammeUtil.getPreferenceValue;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.addon.charts.Chart;
 import com.vaadin.data.Item;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -214,7 +215,7 @@ public class DashboardPanel extends VerticalLayout {
         }
 
         private void deletePanel() {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete panel?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete panel?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {

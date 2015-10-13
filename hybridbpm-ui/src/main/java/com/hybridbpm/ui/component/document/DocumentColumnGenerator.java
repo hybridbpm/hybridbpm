@@ -20,6 +20,7 @@ package com.hybridbpm.ui.component.document;
 
 import com.hybridbpm.core.data.document.Document;
 import com.hybridbpm.ui.HybridbpmUI;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.server.FileDownloader;
 import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinRequest;
@@ -31,6 +32,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -54,9 +56,9 @@ public final class DocumentColumnGenerator implements Table.ColumnGenerator {
         if (Objects.equals(document.getType(), Document.TYPE.FILE)){
             OnDemandFileDownloader onDemandFileDownloader = new OnDemandFileDownloader(document.getId().toString(), document.getName());
             onDemandFileDownloader.extend(button);
-            button.setDescription("Download");
+            button.setDescription(Translate.getMessage("btnDownload"));
         } else {
-            button.setDescription("Open");
+            button.setDescription(Translate.getMessage("btnOpen"));
             button.addClickListener(clickListener);
         }
         return button;
@@ -65,13 +67,7 @@ public final class DocumentColumnGenerator implements Table.ColumnGenerator {
     class OnDemandStreamResource extends StreamResource {
 
         public OnDemandStreamResource() {
-            super(new StreamResource.StreamSource() {
-
-                @Override
-                public InputStream getStream() {
-                    return new ByteArrayInputStream(new byte[1]);
-                }
-            }, "");
+            super(() -> new ByteArrayInputStream(new byte[1]), "");
         }
 
     }
@@ -89,13 +85,9 @@ public final class DocumentColumnGenerator implements Table.ColumnGenerator {
 
         @Override
         public boolean handleConnectorRequest(VaadinRequest request, VaadinResponse response, String path) throws IOException {
-            StreamResource resource = new StreamResource(new StreamResource.StreamSource() {
-
-                @Override
-                public InputStream getStream() {
-                    Document doc = HybridbpmUI.getDocumentAPI().getDocumentById(documentId, true);
-                    return new ByteArrayInputStream(doc.getBody());
-                }
+            StreamResource resource = new StreamResource(() -> {
+                Document doc = HybridbpmUI.getDocumentAPI().getDocumentById(documentId, true);
+                return new ByteArrayInputStream(doc.getBody());
             }, name);
             this.setResource("dl", resource);
             return super.handleConnectorRequest(request, response, path);

@@ -24,6 +24,7 @@ import com.hybridbpm.ui.component.*;
 import com.hybridbpm.core.data.dashboard.ViewDefinition;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.dashboard.tab.TabConfigurationLayout;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.UI;
 import java.util.List;
@@ -65,7 +66,7 @@ public final class ViewManager {
     
     public static void deleteViewDefinitionWindow(final ViewDefinition vd) {
         final ViewDefinition viewDefinition = vd;
-        ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete view?", "OK", "Cancel", new ConfirmDialog.Listener() {
+        ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete view?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {

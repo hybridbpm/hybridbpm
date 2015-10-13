@@ -25,6 +25,7 @@ import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.ConfigureWindow;
 import com.hybridbpm.ui.component.PermissionsColumnGenerator;
 import com.hybridbpm.ui.component.TableButton;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.ui.Button;
@@ -46,9 +47,9 @@ public final class DocumentAccessLayout extends VerticalLayout implements Button
 
     public DocumentAccessLayout() {
         Design.read(this);
-        accessTable.addContainerProperty("role", String.class, null, "Role", null, Table.Align.LEFT);
-        accessTable.addContainerProperty("permission", List.class, null, "Permission", null, Table.Align.LEFT);
-        accessTable.addContainerProperty("actions", TableButtonBar.class, null, "Actions", null, Table.Align.LEFT);
+        accessTable.addContainerProperty("role", String.class, null, Translate.getMessage("documentAccessTableRole"), null, Table.Align.LEFT);
+        accessTable.addContainerProperty("permission", List.class, null, Translate.getMessage("documentAccessTablePermissions"), null, Table.Align.LEFT);
+        accessTable.addContainerProperty("actions", TableButtonBar.class, null, Translate.getMessage("documentAccessTableActions"), null, Table.Align.LEFT);
         accessTable.addGeneratedColumn("permission", new PermissionsColumnGenerator());
         accessTable.setColumnWidth("actions", 55);
         accessTable.setVisibleColumns("role", "permission", "actions");
@@ -90,7 +91,7 @@ public final class DocumentAccessLayout extends VerticalLayout implements Button
         if (event.getButton() instanceof TableButton && ((TableButton) event.getButton()).getType().equals(TableButton.TYPE.EDIT)) {
             addPermission(document, ((TableButton<Permission>) event.getButton()).getCustomData());
         } else  if (event.getButton() instanceof TableButton && ((TableButton) event.getButton()).getType().equals(TableButton.TYPE.DELETE)) {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete permission?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), Translate.getMessage("questionDeletePermission"), Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {
@@ -106,7 +107,7 @@ public final class DocumentAccessLayout extends VerticalLayout implements Button
 
     protected void addPermission(Document document, Permission permission) {
         final DocumentPermissionLayout documentPermissionLayout = new DocumentPermissionLayout(document, permission);
-        final ConfigureWindow configureWindow = new ConfigureWindow(documentPermissionLayout, "Permission");
+        final ConfigureWindow configureWindow = new ConfigureWindow(documentPermissionLayout, Translate.getMessage("windowPermission"));
         Button.ClickListener clickListener = new Button.ClickListener() {
 
             @Override

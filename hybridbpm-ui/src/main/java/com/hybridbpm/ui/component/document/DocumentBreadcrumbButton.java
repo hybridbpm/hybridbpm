@@ -19,6 +19,7 @@
 package com.hybridbpm.ui.component.document;
 
 import com.hybridbpm.core.data.document.Document;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.themes.ValoTheme;
@@ -40,7 +41,7 @@ public final class DocumentBreadcrumbButton extends Button {
             setIcon(FontAwesome.ANGLE_RIGHT);
             setCaption(document.getName());
         } else {
-            setCaption("Documents");
+            setCaption(Translate.getMessage("breadcrumbsRootButtonCaption"));
         }
         if (clickListener != null) {
             addClickListener(clickListener);

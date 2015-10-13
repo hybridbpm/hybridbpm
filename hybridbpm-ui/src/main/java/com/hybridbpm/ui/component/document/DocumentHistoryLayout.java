@@ -24,6 +24,7 @@ import com.hybridbpm.core.data.document.DocumentVersion;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.TableButton;
 import com.hybridbpm.ui.component.bpm.DateColumnGenerator;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.server.FileDownloader;
@@ -49,11 +50,11 @@ public final class DocumentHistoryLayout extends VerticalLayout  {
     public DocumentHistoryLayout() {
         Design.read(this);
 
-        historyTable.addContainerProperty("documentVersion", Integer.class, null, "Version", null, Table.Align.RIGHT);
-        historyTable.addContainerProperty("size", Integer.class, null, "Size", null, Table.Align.RIGHT);
-        historyTable.addContainerProperty("creator", String.class, null, "Creator", null, Table.Align.LEFT);
-        historyTable.addContainerProperty("createDate", Date.class, null, "Create Date", null, Table.Align.LEFT);
-        historyTable.addContainerProperty("actions", TableButtonBar.class, null, "Actions", null, Table.Align.LEFT);
+        historyTable.addContainerProperty("documentVersion", Integer.class, null, Translate.getMessage("documentHistoryVersion"), null, Table.Align.RIGHT);
+        historyTable.addContainerProperty("size", Integer.class, null, Translate.getMessage("documentHistorySize"), null, Table.Align.RIGHT);
+        historyTable.addContainerProperty("creator", String.class, null, Translate.getMessage("documentHistoryCreator"), null, Table.Align.LEFT);
+        historyTable.addContainerProperty("createDate", Date.class, null, Translate.getMessage("documentHistoryCreateDate"), null, Table.Align.LEFT);
+        historyTable.addContainerProperty("actions", TableButtonBar.class, null, Translate.getMessage("documentHistoryActions"), null, Table.Align.LEFT);
         historyTable.setColumnWidth("createDate", 150);
         historyTable.setColumnWidth("actions", 55);
         historyTable.addGeneratedColumn("createDate", new DateColumnGenerator());

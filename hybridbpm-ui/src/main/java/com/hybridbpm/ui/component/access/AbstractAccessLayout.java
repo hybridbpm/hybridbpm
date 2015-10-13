@@ -21,6 +21,7 @@ package com.hybridbpm.ui.component.access;
 import com.hybridbpm.ui.HybridbpmUI;
 import com.hybridbpm.ui.component.AbstractTableLayout;
 import com.hybridbpm.ui.component.TableButton;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.UI;
@@ -38,7 +39,7 @@ public abstract class AbstractAccessLayout extends AbstractTableLayout {
     public void buttonClick(final Button.ClickEvent event) {
         super.buttonClick(event);
         if (event.getButton() instanceof TableButton && ((TableButton)event.getButton()).getType().equals(TableButton.TYPE.DELETE)) {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
                 @Override
                 public void onClose(ConfirmDialog dialog) {
                     if (dialog.isConfirmed()) {

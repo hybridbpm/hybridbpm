@@ -33,6 +33,7 @@ import com.hybridbpm.ui.component.chart.ChartEditor;
 import com.hybridbpm.ui.component.development.ConnectorEditor;
 import com.hybridbpm.ui.component.development.DataEditor;
 import com.hybridbpm.ui.component.development.ModuleLayout;
+import com.hybridbpm.ui.util.Translate;
 import com.vaadin.annotations.DesignRoot;
 import com.vaadin.data.Item;
 import com.vaadin.data.Property;
@@ -147,7 +148,7 @@ public final class DevelopmentView extends AbstractView implements View, Button.
             Module = HybridbpmUI.getDevelopmentAPI().getModuleById(Module.getId());
             openModule(Module, this);
         } else if (event.getButton() instanceof TableButton && ((TableButton) event.getButton()).getType().equals(TableButton.TYPE.DELETE)) {
-            ConfirmDialog.show(UI.getCurrent(), "Please Confirm:", "Delete module?", "OK", "Cancel", new ConfirmDialog.Listener() {
+            ConfirmDialog.show(UI.getCurrent(), Translate.getMessage("windowTitleConfirm"), "Delete module?", Translate.getMessage("btnOK"), Translate.getMessage("btnCancel"), new ConfirmDialog.Listener() {
 
                 @Override
                 public void onClose(ConfirmDialog dialog) {
